@@ -101,7 +101,7 @@ export default function StatsPanel() {
     setReps([...d14.entries()].map(([d, n]) => ({ d, n })))
 
     // precisión de quiz por tema
-    const qT = (qt.data ?? []) as { correct: boolean; words: { topic: string } | null }[]
+    const qT = (qt.data ?? []) as unknown as { correct: boolean; words: { topic: string } | null }[]
     const accs = new Map<string, TopicAcc>()
     for (const x of qT) {
       const t = x.words?.topic

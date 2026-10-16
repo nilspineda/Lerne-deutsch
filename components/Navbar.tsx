@@ -23,7 +23,7 @@ export default function Navbar({ variant }: { variant: 'header' | 'bottom' }) {
           {items.map(({ href, label, icon: Icon }) => {
             const active = isActive(href)
             return (
-              <Link key={href} href={href}
+              <Link key={href} href={href} aria-current={active ? 'page' : undefined}
                 className={cn(
                   'flex flex-1 flex-col items-center gap-0.5 rounded-xl py-2 text-[11px] font-medium transition-colors',
                   active ? 'bg-red-600 text-white' : 'text-stone-500 dark:text-neutral-400',
