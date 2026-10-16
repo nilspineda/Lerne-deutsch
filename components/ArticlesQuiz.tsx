@@ -29,7 +29,8 @@ export default function ArticlesQuiz({ level }: { level: string }) {
     ;(async () => {
       setLoading(true)
       let f = sb.from('words').select('id, de, article, es').not('article', 'is', null)
-      if (level) f = f.eq('level', level)
+      // niveles por prefijo: A1 coincide con A1.1 / A1.2
+      if (level) f = f.ilike('level', `${level}%`)
       const { data } = await f
       setPool((data ?? []) as unknown as W[])
       setLoading(false)
@@ -49,7 +50,12 @@ export default function ArticlesQuiz({ level }: { level: string }) {
     if (picked || !card) return
     setPicked(a)
     const ok = a === card.article
-    if (!firstTry.current.has(card.id)) { firstTry.current.add(card.id); logAnswer(card.id, ok) }
+    // la cuenta solo considera el primer intento por palabra (los reintentos no suman)
+    if (!firstTry.current.has(card.id)) {
+      firstTry.current.add(card.id)
+      setScore((s) => ({ ok: s.ok + (ok ? 1 : 0), total: s.total + 1 }))
+      logAnswer(card.id, ok)
+    }
     if (!ok) speak(card.de, true)
     setTimeout(() => {
       if (!ok) setRetry((r) => (r.some((x) => x.id === card.id) ? r : [...r, card]))

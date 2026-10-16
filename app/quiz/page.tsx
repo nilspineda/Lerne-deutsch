@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import ArticlesQuiz from '@/components/ArticlesQuiz'
 
-const LEVELS = ['', 'A1', 'A2', 'B1', 'B2', 'C1']
+const LEVELS = ['', 'A1', 'A2']
 
 export default function Quiz() {
   const [level, setLevel] = useState('')
