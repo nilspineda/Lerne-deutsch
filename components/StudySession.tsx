@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase/client'
 import { next, preview, type Rating } from '@/lib/srs'
 import { speak, stopSpeak } from '@/lib/speak'
 import { full, topicLabel, type Card } from '@/lib/types'
+import { queueRating, flushPending } from '@/lib/offlineSrs'
 
 export default function StudySession({ track, level, topic }: { track: 'meaning' | 'pron'; level?: string; topic?: string }) {
   const sb = useMemo(() => supabase(), [])
@@ -71,6 +72,14 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
 
   useEffect(() => () => stopSpeak(), []) // corta el audio al desmontar (nav fuera de /study)
 
+  // sincroniza repases guardados sin conexión al abrir y al volver la red
+  useEffect(() => {
+    const flush = () => { void flushPending() }
+    void flush()
+    window.addEventListener('online', flush)
+    return () => window.removeEventListener('online', flush)
+  }, [])
+
   const options = useMemo(() => {
     if (!w) return []
     const pool = queue.slice(1).map((c) => c.words.es).filter((es) => es && es !== w.es)
@@ -105,9 +114,24 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
       due: n.due.toISOString(), interval_days: n.interval_days, ease: n.ease, reps: n.reps, lapses: n.lapses,
       last_reviewed: new Date().toISOString(),
     }).match({ word_id: card.word_id, track: card.track })
-    if (upd.error) { setErr('No se pudo guardar. Reintenta.'); return }
+    if (upd.error) {
+      // sin conexión: guarda el repaso localmente; se sincroniza al volver la red
+      queueRating({ word_id: card.word_id, track: card.track, rating: q, interval_days: n.interval_days, ease: n.ease, reps: n.reps, lapses: n.lapses, due: n.due.toISOString() })
+      setErr('Sin conexión: guardado local, se sincronizará automático.')
+      setQueue((qs) => {
+        const rest = qs.slice(1)
+        const withN = { ...card, ...n, due: n.due.toISOString() }
+        if (q === 0) return [...rest, withN]
+        return wrong ? [...rest, withN] : rest
+      })
+      if (q !== 0 && !wrong) setDone((d) => d + 1)
+      setShown(false)
+      return
+    }
     const ins = await sb.from('review_log').insert({ word_id: card.word_id, track: card.track, rating: q })
-    if (ins.error) { setErr('No se pudo registrar el repaso.'); return }
+    if (ins.error) {
+      queueRating({ word_id: card.word_id, track: card.track, rating: q, interval_days: n.interval_days, ease: n.ease, reps: n.reps, lapses: n.lapses, due: n.due.toISOString() })
+    }
     setErr('')
     setQueue((qs) => {
       const rest = qs.slice(1)
