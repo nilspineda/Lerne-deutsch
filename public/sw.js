@@ -1,6 +1,6 @@
 // SW mínimo: shell offline (no-cache-first simple). Las rutas son dinámicas (Supabase), así que
 // solo cacheamos el shell y los estáticos; el contenido vive en la red.
-const V = 'lerne-v1'
+const V = 'lerne-v2'
 const SHELL = ['/', '/icon-192.png', '/icon-512.png', '/manifest.json']
 
 self.addEventListener('install', (e) => {
