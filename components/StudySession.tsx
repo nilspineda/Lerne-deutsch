@@ -20,7 +20,22 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
         .lte('due', new Date().toISOString()).order('due').limit(40)
       if (level) q = q.eq('words.level', level)
       if (topic) q = q.eq('words.topic', topic)
-      const { data } = await q
+      let { data } = await q
+
+      // estudio por tema/nivel: si no hay tarjetas (o ninguna vencida), se agregan del catálogo automáticamente
+      if (!data?.length && (level || topic)) {
+        let f = sb.from('words').select('id').is('owner', null)
+        if (level) f = f.eq('level', level)
+        if (topic) f = f.eq('topic', topic)
+        const { data: cat } = await f
+        if (cat?.length) {
+          await sb.from('user_cards').upsert(
+            cat.map((w: { id: string }) => ({ word_id: w.id, track })),
+            { ignoreDuplicates: true },
+          )
+          ;({ data } = await q)
+        }
+      }
       setQueue((data ?? []) as unknown as Card[]); setDone(0); setShown(false); setLoading(false)
     })()
   }, [sb, track, level, topic])
