@@ -1,18 +1,37 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { topicLabel } from '@/lib/types'
+import AddRandom from '@/components/AddRandom'
 
 type Row = { track: string; due: string; interval_days: number; words: { topic: string; level: string } | null }
 type Cat = { topic: string; level: string }
 
+// racha en días (UTC): días consecutivos con repases
+function streakOf(days: string[]): number {
+  const set = new Set(days)
+  let s = 0
+  const today = new Date().toISOString().slice(0, 10)
+  const d = new Date(today + 'T00:00:00Z')
+  if (!set.has(today)) d.setUTCDate(d.getUTCDate() - 1) // hoy aún no estudió: cuenta desde ayer
+  for (;;) {
+    const key = d.toISOString().slice(0, 10)
+    if (!set.has(key)) break
+    s++; d.setUTCDate(d.getUTCDate() - 1)
+    if (s > 365) break
+  }
+  return s
+}
+
 export default async function Home() {
   const sb = await createClient()
-  const [{ data: c }, { data: k }] = await Promise.all([
+  const [{ data: c }, { data: k }, { data: r }] = await Promise.all([
     sb.from('user_cards').select('track, due, interval_days, words(topic, level)'),
     sb.from('words').select('topic, level').is('owner', null),
+    sb.from('review_log').select('reviewed_at').gte('reviewed_at', new Date(Date.now() - 90 * 864e5).toISOString()).limit(2000),
   ])
   const cards = (c ?? []) as unknown as Row[]
   const catalog = (k ?? []) as Cat[]
+  const streak = streakOf((r ?? []).map((x: { reviewed_at: string }) => x.reviewed_at.slice(0, 10)))
   const now = Date.now()
   const due = (t: string) => cards.filter((x) => x.track === t && new Date(x.due).getTime() <= now).length
 
@@ -43,6 +62,7 @@ export default async function Home() {
 
   return (
     <div className="space-y-5">
+      <AddRandom n={15} />
       <div className="grid grid-cols-2 gap-3">
         <Link href="/study?track=meaning" className={box}>
           <div className="text-3xl font-bold">{due('meaning')}</div>
@@ -53,6 +73,9 @@ export default async function Home() {
           <div className="text-sm opacity-70">🔊 Pronunciación pendientes</div>
         </Link>
       </div>
+      <p className="text-center text-sm">
+        {streak > 0 ? <><span className="font-bold text-red-600">🔥 {streak}</span> <span className="opacity-70">día(s) de racha</span></> : <span className="opacity-60">🔥 Estudia hoy y empieza tu racha</span>}
+      </p>
       {cards.length === 0 && (
         <p className={box}>Aún no tienes palabras. Ve a <Link className="underline" href="/words">Palabras</Link> y agrega algunas (o 5 al azar).</p>
       )}
@@ -72,7 +95,7 @@ export default async function Home() {
               <div key={g.level + g.topic} className={box}>
                 <div className="flex items-center justify-between">
                   <b>{topicLabel(g.topic)}</b>
-                  <Link className="text-sm underline" href={`/study?topic=${g.topic}&level=${g.level}`}>Estudiar</Link>
+                  <Link className="text-sm underline" href={`/topic?topic=${encodeURIComponent(g.topic)}&level=${encodeURIComponent(g.level)}`}>Estudiar</Link>
                 </div>
                 <div className="mt-2 h-2 overflow-hidden rounded bg-stone-200 dark:bg-neutral-800">
                   <div className={level === 'A1.2' ? 'h-full bg-purple-600' : 'h-full bg-blue-600'} style={{ width: `${(g.mastered / g.total) * 100}%` }} />

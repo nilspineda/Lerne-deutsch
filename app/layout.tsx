@@ -4,9 +4,11 @@ import type { ReactNode } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import UserMenu from '@/components/UserMenu'
 import Navbar from '@/components/Navbar'
+import SwRegister from '@/components/SwRegister'
 import { Sparkles } from 'lucide-react'
 
 export const metadata = { title: 'LerneDeutsch', description: 'Aprende alemán con repetición espaciada' }
+export const viewport = { themeColor: '#1c1917' }
 
 function nameOf(user: { email?: string; user_metadata?: { name?: string; full_name?: string } }) {
   return user.user_metadata?.name || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Usuario'
@@ -18,6 +20,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="es" className="dark">
       <body className="flex min-h-screen flex-col bg-stone-50 text-stone-900 dark:bg-neutral-950 dark:text-stone-100">
+        <SwRegister />
         {user && (
           <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
             <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-3 py-2.5 sm:px-4">

@@ -7,6 +7,8 @@ import { topicLabel } from '@/lib/types'
 
 type Fail = { word_id: string; words: { de: string; article: string | null; es: string } | null }
 type Trend = { d: string; ok: number; tot: number }
+type TopicAcc = { topic: string; ok: number; tot: number }
+type Rev = { reviewed_at: string }
 
 const box = 'rounded-2xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5'
 
@@ -23,18 +25,25 @@ export default function StatsPanel() {
   const [fails, setFails] = useState<Fail[]>([])
   const [trend, setTrend] = useState<Trend[]>([])
   const [streak, setStreak] = useState<{ days: number; nreviews: number } | null>(null)
+  const [reps, setReps] = useState<{ d: string; n: number }[]>([])
+  const [topicAcc, setTopicAcc] = useState<TopicAcc[]>([])
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(async () => {
     setLoading(true)
     const now = Date.now()
     const days30 = new Date(now - 30 * 864e5).toISOString()
-    const [c, q, f, r] = await Promise.all([
+    const days14 = new Date(now - 14 * 864e5).toISOString()
+    const [c, q, f, r, rt, qt] = await Promise.all([
       sb.from('user_cards').select('interval_days').eq('track', 'meaning').not('interval_days', 'is', null),
       sb.from('quiz_log').select('correct, answered_at').gte('answered_at', days30),
       sb.from('quiz_log').select('word_id, correct, words(de, article, es)').eq('correct', false).order('answered_at', { ascending: false }).limit(200),
       // racha: días con actividad (repasos de tarjetas o quiz) en los últimos 90 días
       sb.from('review_log').select('reviewed_at').gte('reviewed_at', new Date(now - 90 * 864e5).toISOString()).limit(2000),
+      // repases por día (14 días) para el gráfico de estudio
+      sb.from('review_log').select('reviewed_at').gte('reviewed_at', days14).limit(2000),
+      // precisión de quiz por tema
+      sb.from('quiz_log').select('correct, words(topic)').gte('answered_at', days30),
     ])
     const list = (c.data ?? []) as { interval_days: number }[]
     setCards({ mastered: list.filter((x) => x.interval_days >= 21).length, total: list.length })
@@ -78,6 +87,30 @@ export default function StatsPanel() {
       if (i > 90) break
     }
     setStreak({ days, nreviews: rL.length })
+
+    // gráfico de repases de tarjetas por día (14 días)
+    const r14 = (rt.data ?? []) as Rev[]
+    const d14 = new Map<string, number>()
+    for (let i = 13; i >= 0; i--) {
+      d14.set(new Date(now - i * 864e5).toISOString().slice(0, 10), 0)
+    }
+    for (const x of r14) {
+      const d = x.reviewed_at.slice(0, 10)
+      if (d14.has(d)) d14.set(d, (d14.get(d) ?? 0) + 1)
+    }
+    setReps([...d14.entries()].map(([d, n]) => ({ d, n })))
+
+    // precisión de quiz por tema
+    const qT = (qt.data ?? []) as { correct: boolean; words: { topic: string } | null }[]
+    const accs = new Map<string, TopicAcc>()
+    for (const x of qT) {
+      const t = x.words?.topic
+      if (!t) continue
+      const a = accs.get(t) ?? { topic: t, ok: 0, tot: 0 }
+      a.tot++; if (x.correct) a.ok++
+      accs.set(t, a)
+    }
+    setTopicAcc([...accs.values()].sort((a, b) => b.tot - a.tot))
     setLoading(false)
   }, [sb])
   useEffect(() => { load() }, [load])
@@ -115,6 +148,46 @@ export default function StatsPanel() {
         </div>
         <div className="mt-1 text-xs opacity-60">Verde = correctas · rojo = falladas (altura = volumen del día)</div>
       </div>
+
+      <div className={box}>
+        <b className="text-sm">🎬 Repases · últimos 14 días</b>
+        <div className="mt-3 flex h-20 items-end gap-1">
+          {reps.map((t) => {
+            const max = Math.max(1, ...reps.map((x) => x.n))
+            return (
+              <div key={t.d} className="flex flex-1 flex-col items-center gap-1">
+                <div className="flex h-16 w-full flex-col justify-end">
+                  <div className="w-full rounded-t bg-blue-600/80" style={{ height: `${Math.round((t.n / max) * 100)}%` }} title={`${t.n} repases`} />
+                </div>
+                <span className="text-[10px] opacity-50">{t.d.slice(8)}</span>
+              </div>
+            )
+          })}
+        </div>
+        <div className="mt-1 text-xs opacity-60">Altura = número de tarjetas repasadas (Significado + Pronunciación)</div>
+      </div>
+
+      {topicAcc.length > 0 && (
+        <div className={box}>
+          <b className="text-sm">🎯 Precisión de quiz por tema (30 días)</b>
+          <div className="mt-3 space-y-2">
+            {topicAcc.map((t) => {
+              const pct = Math.round((t.ok / t.tot) * 100)
+              return (
+                <div key={t.topic}>
+                  <div className="flex justify-between text-xs">
+                    <span><b>{topicLabel(t.topic)}</b> <span className="opacity-60">{t.tot} respuestas</span></span>
+                    <span className={pct >= 90 ? 'text-green-600 dark:text-green-400' : pct >= 70 ? 'text-orange-500' : 'text-red-600 dark:text-red-400'}>{pct}%</span>
+                  </div>
+                  <div className="mt-1 h-2 overflow-hidden rounded bg-stone-200 dark:bg-neutral-800">
+                    <div className={pct >= 90 ? 'h-full bg-green-500' : pct >= 70 ? 'h-full bg-orange-400' : 'h-full bg-red-500'} style={{ width: `${pct}%` }} />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="space-y-2">
         <b className="text-sm">🔁 Para mejorar (tus fallas más frecuentes)</b>

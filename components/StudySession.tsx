@@ -30,7 +30,10 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
         if (level) f = f.eq('level', level)
         if (topic) f = f.eq('topic', topic)
         const { data: cat } = await f
-        const fresh = (cat ?? []).filter((w: { id: string }) => !haveIds.has(w.id)).slice(0, 20)
+        const fresh = (cat ?? [])
+          .filter((w: { id: string }) => !haveIds.has(w.id))
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 20)
         if (fresh.length) {
           await sb.from('user_cards').upsert(fresh.map((w: { id: string }) => ({ word_id: w.id, track })), { ignoreDuplicates: true })
 
@@ -158,7 +161,7 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
         <Link href={qs('meaning')} className={tab('meaning', track === 'meaning')}>📖 Significado</Link>
         <Link href={qs('pron')} className={tab('pron', track === 'pron')}>🔊 Pronunciación</Link>
       </div>
-      {topic && <p className="text-sm opacity-70">{topicLabel(topic)} {level} · <Link className="underline" href={qs(track).split('&')[0]}>ver todo</Link></p>}
+      {topic && <p className="text-sm opacity-70">{topicLabel(topic)} {level} · <Link className="underline" href={`/topic?topic=${encodeURIComponent(topic)}&level=${encodeURIComponent(level ?? '')}`}>resumen del tema</Link></p>}
 
       {loading ? <p className="opacity-60">Cargando…</p> : !card || !w ? (
         <div className={box}>✅ ¡Todo al día! Hiciste {done} tarjetas.<div className="mt-3"><Link className="underline" href="/words">Agregar más palabras</Link></div></div>

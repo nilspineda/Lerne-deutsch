@@ -63,6 +63,11 @@ export default function WordsManager() {
 
   async function save() {
     if (!f.de.trim() || !f.es.trim()) { setMsg('Faltan alemán y significado'); return }
+    // detectar duplicado en el catálogo propio (incluye catálogo global para comparar)
+    const { data: dup } = await sb.from('words').select('article, de').ilike('de', f.de.trim())
+    const same = (dup ?? []).find((x: { article: string | null }) =>
+      (x.article || '') === (f.article || ''))
+    if (same) { setMsg('⚠ Ya existe en el catálogo — ve a la lista para agregarla'); return }
     const { data, error } = await sb.from('words').insert({
       de: f.de.trim(), es: f.es.trim(), article: f.article || null, ipa: f.ipa || null,
       respell: f.respell || null, example: f.example || null, topic: f.topic.trim() || 'personal', level: f.level,
