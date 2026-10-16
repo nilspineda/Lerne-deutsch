@@ -5,17 +5,16 @@ import { speak } from '@/lib/speak'
 import { LEVELS, full, topicLabel, type Word } from '@/lib/types'
 
 const empty = { de: '', article: '', es: '', ipa: '', respell: '', example: '', topic: 'personal', level: 'A1.1' }
-
-export default function WordsManager() {
+export default function WordsManager({ initialTopic, initialLevel }: { initialTopic?: string; initialLevel?: string }) {
   const sb = useMemo(() => supabase(), [])
   const [words, setWords] = useState<Word[]>([])
   const [added, setAdded] = useState<Set<string>>(new Set())
-  const [level, setLevel] = useState('')
-  const [topic, setTopic] = useState('')
+  const [level, setLevel] = useState(initialLevel ?? '')
+  const [topic, setTopic] = useState(initialTopic ?? '')
   const [q, setQ] = useState('')
   const [msg, setMsg] = useState('')
   const [confirmId, setConfirmId] = useState<string | null>(null)
-  const [f, setF] = useState(empty)
+  const [f, setF] = useState({ ...empty, topic: initialTopic || 'personal', level: initialLevel || 'A1.1' })
   const [busy, setBusy] = useState(false)
 
   const load = useCallback(async () => {

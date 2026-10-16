@@ -5,7 +5,7 @@ import AddRandom from '@/components/AddRandom'
 import InstallPrompt from '@/components/InstallPrompt'
 
 type Row = { track: string; due: string; interval_days: number; words: { topic: string; level: string } | null }
-type Cat = { topic: string; level: string }
+type Cat = { topic: string; level: string; owner: string | null }
 
 // racha en días (UTC): días consecutivos con repases
 function streakOf(days: string[]): number {
@@ -25,9 +25,11 @@ function streakOf(days: string[]): number {
 
 export default async function Home() {
   const sb = await createClient()
+  const { data: { user } } = await sb.auth.getUser()
   const [{ data: c }, { data: k }, { data: r }] = await Promise.all([
     sb.from('user_cards').select('track, due, interval_days, words(topic, level)'),
-    sb.from('words').select('topic, level').is('owner', null),
+    // catálogo global + palabras propias (suman al total del tema y permiten "agregar más")
+    sb.from('words').select('topic, level, owner').or(`owner.is.null,owner.eq.${user?.id}`),
     sb.from('review_log').select('reviewed_at').gte('reviewed_at', new Date(Date.now() - 90 * 864e5).toISOString()).limit(2000),
   ])
   const cards = (c ?? []) as unknown as Row[]
@@ -103,6 +105,11 @@ export default async function Home() {
                   <div className={level === 'A1.2' ? 'h-full bg-purple-600' : 'h-full bg-blue-600'} style={{ width: `${(g.mastered / g.total) * 100}%` }} />
                 </div>
                 <div className="mt-1 text-xs opacity-70">{g.mastered} dominadas · {g.added} agregadas · {g.total} en el catálogo</div>
+                {g.mastered >= g.total && (
+                  <Link className="mt-1 inline-block text-xs underline opacity-80" href={`/words?topic=${encodeURIComponent(g.topic)}&level=${encodeURIComponent(g.level)}`}>
+                    🎉 ¡Tema completo! Agrega más palabras y baja la barra
+                  </Link>
+                )}
               </div>
             ))}
           </div>
