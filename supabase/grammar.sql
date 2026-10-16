@@ -281,7 +281,7 @@ join (values
   ('es-gibt','Es gibt ___ Zucker.', array['keinen','kein','nicht'],'keinen','der Zucker (masc., sin artículo) → keinen'),
   ('es-gibt','Es gibt ___ Probleme.', array['keine','keinen','nicht'],'keine','plural → keine'),
   ('es-gibt','Gibt es ___ Fernseher?', array['einen','eine','einem'],'einen','der Fernseher masc.'),
-  ('es-gibt','Es gibt hier keinen Park.', array['kein','keine','keinen'],'keinen','der Park (masc.) → keinen'),
+  ('es-gibt','Es gibt hier ___ Park.', array['kein','keine','keinen'],'keinen','der Park (masc.) → keinen')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
 insert into public.grammar_exercises (rule_id, sentence, options, answer, hint)
