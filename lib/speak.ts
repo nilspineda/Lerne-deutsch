@@ -1,0 +1,45 @@
+// Prioridad: audio alemán server-side (/api/tts, Google TTS de-DE) → no depende de las voces del sistema.
+// Fallback: speechSynthesis local si el servidor falls.
+let current: HTMLAudioElement | null = null
+let lastKey = ''
+let lastAt = 0
+
+function localSpeak(text: string, slow: boolean) {
+  if (!('speechSynthesis' in window)) return
+  const syn = speechSynthesis
+  const v = syn.getVoices().find((x) => x.lang.toLowerCase().startsWith('de'))
+  const u = new SpeechSynthesisUtterance(text)
+  u.lang = 'de-DE'
+  u.rate = slow ? 0.5 : 0.8
+  if (v) u.voice = v
+  syn.cancel()
+  syn.speak(u)
+}
+
+export function speak(text: string, slow = false) {
+  if (typeof window === 'undefined') return
+  const key = text.slice(0, 80) + '|' + (slow ? 'l' : 'n')
+  const now = Date.now()
+  if (key === lastKey && now - lastAt < 1200) return
+  lastKey = key; lastAt = now
+  const w = text.replace(/\n/g, ' ').slice(0, 200)
+  const url = `/api/tts?word=${encodeURIComponent(w)}${slow ? '&slow=1' : ''}`
+  try {
+    current?.pause()
+    const a = new Audio(url)
+    current = a
+    a.onended = () => { if (current === a) current = null }
+    a.onerror = () => { if (current === a) current = null; localSpeak(text, slow) }
+    a.play().catch(() => localSpeak(text, slow))
+  } catch {
+    localSpeak(text, slow)
+  }
+}
+
+// corta todo audio local y remoto (usear como cleanup al desmontar la página)
+export function stopSpeak() {
+  try {
+    if (current) { current.pause(); current.src = ''; current = null }
+    if ('speechSynthesis' in window) speechSynthesis.cancel()
+  } catch { /* noop */ }
+}
