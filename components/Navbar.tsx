@@ -1,12 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { House, BookOpen, Layers, AudioLines, TrendingUp } from 'lucide-react'
+import { House, BookOpen, Layers, AudioLines, TrendingUp, Languages } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const items = [
   { href: '/', label: 'Inicio', icon: House },
   { href: '/study', label: 'Estudiar', icon: BookOpen },
+  { href: '/grammar', label: 'Gram.', icon: Languages },
   { href: '/listen', label: 'Oído', icon: AudioLines },
   { href: '/quiz', label: 'Quiz', icon: Layers },
   { href: '/stats', label: 'Progreso', icon: TrendingUp },
@@ -19,13 +20,13 @@ export default function Navbar({ variant }: { variant: 'header' | 'bottom' }) {
   if (variant === 'bottom') {
     return (
       <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-stone-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden dark:border-neutral-800 dark:bg-neutral-950/95">
-        <div className="mx-auto flex max-w-md justify-between gap-1 p-1.5">
+        <div className="mx-auto flex max-w-md justify-between gap-0.5 p-1.5">
           {items.map(({ href, label, icon: Icon }) => {
             const active = isActive(href)
             return (
               <Link key={href} href={href} aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'flex flex-1 flex-col items-center gap-0.5 rounded-xl py-2 text-[11px] font-medium transition-colors',
+                  'flex flex-1 flex-col items-center gap-0.5 rounded-xl py-2 text-[10px] font-medium transition-colors',
                   active ? 'bg-red-600 text-white' : 'text-stone-500 dark:text-neutral-400',
                 )}>
                 <Icon className="size-5" />

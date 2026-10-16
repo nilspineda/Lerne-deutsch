@@ -57,11 +57,12 @@ export default function ArticlesQuiz({ level }: { level: string }) {
       logAnswer(card.id, ok)
     }
     if (!ok) speak(card.de, true)
+    // feedback de error más lento para poder leer «Era ...»; el acierto pasa rápido
     setTimeout(() => {
       if (!ok) setRetry((r) => (r.some((x) => x.id === card.id) ? r : [...r, card]))
       setQueue((qs) => (!ok ? [...qs.slice(1), card] : qs.slice(1)))
       setPicked(null)
-    }, 900)
+    }, ok ? 700 : 2600)
   }
 
   const option = (a: string) => {
