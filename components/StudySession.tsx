@@ -134,7 +134,7 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
   // distractores del MISMO tema que la palabra actual (negro vs. otros colores, no números)
   const [topicDistractors, setTopicDistractors] = useState<string[]>([])
   useEffect(() => {
-    if (!card || track !== 'meaning') { setTopicDistractors([]); return }
+    if (!card) { setTopicDistractors([]); return }
     const topic = card.words?.topic
     let q = sb.from('words').select('es').is('owner', null).neq('es', card.words.es)
     if (topic) q = q.eq('topic', topic)
