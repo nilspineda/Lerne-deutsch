@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <SwRegister />
         {user && (
           <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
-            <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-3 py-2.5 sm:px-4">
+            <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:max-w-3xl">
               <Link href="/" className="shrink-0">
                 <span className="flex items-center gap-1.5 text-base sm:text-lg">
                   <Sparkles className="size-5 text-red-600" />
@@ -35,9 +35,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             </div>
           </header>
         )}
-        <main className="mx-auto max-w-xl p-4">{children}</main>
+        <main className="mx-auto max-w-xl p-4 sm:p-6 md:max-w-3xl md:p-8">{children}</main>
         {user && (
-          <footer className="mx-auto mt-auto w-full max-w-xl p-4 pb-28 text-center text-xs opacity-50 md:pb-4">
+          <footer className="mx-auto mt-auto w-full max-w-xl p-4 pb-28 text-center text-xs opacity-50 md:max-w-3xl md:pb-4">
             Diseñado por <a href="https://nilspineda.com/es/" className="underline">nilspineda</a>
           </footer>
         )}

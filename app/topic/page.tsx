@@ -38,7 +38,7 @@ export default async function Topic({
         </Link>
       </div>
       <div className="text-xs opacity-60">Palabras del catálogo ({words.length}):</div>
-      <div>
+      <div className="grid gap-x-8 md:grid-cols-2">
         {words.map((w) => (
           <div key={w.id} className="flex items-baseline gap-2 border-b border-stone-200 py-2 text-sm dark:border-neutral-800">
             {w.article && <span className="shrink-0 text-red-600">{w.article}</span>}
@@ -46,7 +46,7 @@ export default async function Topic({
             <span className="min-w-0 flex-1 truncate opacity-70">{w.es}</span>
           </div>
         ))}
-        {!words.length && <p className="py-6 text-center text-sm opacity-60">Sin palabras en el catálogo para este tema.</p>}
+        {!words.length && <p className="py-6 text-center text-sm opacity-60 md:col-span-2">Sin palabras en el catálogo para este tema.</p>}
       </div>
       <Link href="/" className="block text-center text-xs opacity-50 underline">← Volver al inicio</Link>
     </div>

@@ -89,6 +89,14 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
   const w = card?.words
   const [choice, setChoice] = useState<string | null>(null)
   const [wrong, setWrong] = useState<string | null>(null)
+  // distractores extra: garantizan opciones a la última pregunta (pool de la cola vacío)
+  const [extras, setExtras] = useState<string[]>([])
+  useEffect(() => {
+    ;(async () => {
+      const { data } = await sb.from('words').select('es').is('owner', null).order('created_at', { ascending: false }).limit(30)
+      setExtras([...new Set((data ?? []).map((x: { es: string }) => x.es))])
+    })()
+  }, [sb])
 
   useEffect(() => { setChoice(null); setWrong(null) }, [card?.word_id])
 
@@ -125,7 +133,7 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
 
   const options = useMemo(() => {
     if (!w) return []
-    const pool = queue.slice(1).map((c) => c.words.es).filter((es) => es && es !== w.es)
+    const pool = [...queue.slice(1).map((c) => c.words.es), ...extras].filter((es) => es && es !== w.es)
     const uniq = [...new Set(pool)]
     const picked: string[] = []
     while (picked.length < 3 && uniq.length) {
@@ -133,7 +141,7 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
       picked.push(uniq.splice(i, 1)[0])
     }
     return [w.es, ...picked].sort(() => Math.random() - 0.5)
-  }, [card?.word_id, queue.length, track]) // eslint-disable-line
+  }, [card?.word_id, queue.length, extras, track]) // eslint-disable-line
 
   function pick(es: string) {
     if (!w || shown) return

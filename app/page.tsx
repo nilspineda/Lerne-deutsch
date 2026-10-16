@@ -65,6 +65,7 @@ export default async function Home() {
 
   return (
     <div className="space-y-5">
+      <InstallPrompt />
       <AddRandom n={15} />
       <div className="grid grid-cols-2 gap-3">
         <Link href="/study?track=meaning" className={box}>
@@ -89,9 +90,8 @@ export default async function Home() {
       )}
       <h2 className="font-semibold">Progreso por tema</h2>
     <div className="space-y-5">
-      <InstallPrompt />
         {[...byLevel.entries()].map(([level, groupsOfLevel]) => (
-          <div key={level} className="space-y-2">
+          <div key={level} className="space-y-3">
             <div className="flex items-center gap-2">
               <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${levelStyle[level] ?? 'bg-stone-200 text-stone-700 dark:bg-neutral-800 dark:text-stone-200'}`}>
                 {level}
@@ -100,6 +100,7 @@ export default async function Home() {
                 {groupsOfLevel.reduce((a, g) => a + g.mastered, 0)} dominadas · {groupsOfLevel.reduce((a, g) => a + g.total, 0)} palabras
               </span>
             </div>
+            <div className="grid gap-3 sm:grid-cols-2">
             {groupsOfLevel.map((g) => (
               <div key={g.level + g.topic} className={box}>
                 <div className="flex items-center justify-between">
@@ -117,6 +118,7 @@ export default async function Home() {
                 )}
               </div>
             ))}
+            </div>
           </div>
         ))}
       </div>
