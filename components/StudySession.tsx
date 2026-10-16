@@ -22,19 +22,38 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
       if (topic) q = q.eq('words.topic', topic)
       let { data } = await q
 
-      // estudio por tema/nivel: si no hay tarjetas (o ninguna vencida), se agregan del catálogo automáticamente
-      if (!data?.length && (level || topic)) {
-        let f = sb.from('words').select('id').is('owner', null)
+      if (!data?.length) {
+        // sin tema: agrega palabras nuevas del catálogo (sin duplicar) hasta tener suficientes
+        const { data: have } = await sb.from('user_cards').select('word_id').eq('track', track)
+        const haveIds = new Set((have ?? []).map((h: { word_id: string }) => h.word_id))
+        let f = sb.from('words').select('id, de, article, es').is('owner', null)
         if (level) f = f.eq('level', level)
         if (topic) f = f.eq('topic', topic)
         const { data: cat } = await f
-        if (cat?.length) {
-          await sb.from('user_cards').upsert(
-            cat.map((w: { id: string }) => ({ word_id: w.id, track })),
-            { ignoreDuplicates: true },
-          )
-          ;({ data } = await q)
+        const fresh = (cat ?? []).filter((w: { id: string }) => !haveIds.has(w.id)).slice(0, 20)
+        if (fresh.length) {
+          await sb.from('user_cards').upsert(fresh.map((w: { id: string }) => ({ word_id: w.id, track })), { ignoreDuplicates: true })
+
+          // estudio por tema/nivel: si no hay tarjetas (o ninguna vencida), se agregan del catálogo automáticamente
+        } else if (level || topic) {
+          let f2 = sb.from('words').select('id').is('owner', null)
+          if (level) f2 = f2.eq('level', level)
+          if (topic) f2 = f2.eq('topic', topic)
+          const { data: cat2 } = await f2
+          if (cat2?.length) {
+            await sb.from('user_cards').upsert(
+              cat2.map((w: { id: string }) => ({ word_id: w.id, track })),
+              { ignoreDuplicates: true },
+            )
+          }
         }
+
+        // 'siempre hay algo que estudiar': se adelantan las más cercanas aunque no estén vencidas
+        let q2 = sb.from('user_cards').select('*, words!inner(*)').eq('track', track).order('due').limit(40)
+        if (level) q2 = q2.eq('words.level', level)
+        if (topic) q2 = q2.eq('words.topic', topic)
+        const { data: upcoming } = await q2
+        if (upcoming?.length) data = upcoming
       }
       setQueue((data ?? []) as unknown as Card[]); setDone(0); setShown(false); setLoading(false)
     })()
