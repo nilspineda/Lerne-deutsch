@@ -27,7 +27,7 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
   )
   const choices = useMemo(() => shuffleDistractors(s, sentences), [s.text, level])
 
-  // reproducir automÃ¡ticamente al cambiar de oraciÃ³n
+  // reproducir automáticamente al cambiar de oración
   useEffect(() => { speak(s.text) }, [s.text, mode]) // eslint-disable-line
   useEffect(() => { setShown(false); setPicked(null); setFailed(false); setBuilt([]); setTip(null) }, [s.text, mode])
 
@@ -38,7 +38,7 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
   }
 
   function retryOrNext() {
-    // si ya fallÃ³ dos veces, pasa a la siguiente
+    // si ya falló dos veces, pasa a la siguiente
     if (failed) { setFailed(false); next() }
     else { setFailed(true); setBuilt([]) }
   }
@@ -53,16 +53,16 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
   const [tip, setTip] = useState<{ word: string; es: string } | null>(null)
 
   async function wordTip(word: string) {
-    const clean = word.replace(/[.,!?Â«Â»]/g, '').trim()
+    const clean = word.replace(/[.,!?«»]/g, '').trim()
     speak(clean)
     if (tipCache.has(clean)) { setTip({ word: clean, es: tipCache.get(clean)! }); return }
     try {
       const r = await fetch(`/api/enrich?word=${encodeURIComponent(clean)}`)
       const d = await r.json()
-      const es = d.es || 'sin traducciÃ³n'
+      const es = d.es || 'sin traducción'
       tipCache.set(clean, es)
       setTip({ word: clean, es })
-    } catch { setTip({ word: clean, es: 'sin traducciÃ³n' }) }
+    } catch { setTip({ word: clean, es: 'sin traducción' }) }
   }
   const bigBtn = 'w-full rounded-lg bg-red-600 p-3 font-medium text-white'
   const ghost = 'rounded-lg border border-stone-300 dark:border-neutral-700 px-4 py-2 text-sm hover:bg-stone-200 dark:hover:bg-neutral-800'
@@ -72,8 +72,8 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
   return (
     <div className="space-y-4">
       <div className="flex gap-2">
-        <button onClick={() => setMode('comprender')} className={tab(mode === 'comprender')}>ðŸ§  Comprender</button>
-        <button onClick={() => setMode('ordenar')} className={tab(mode === 'ordenar')}>ðŸ”¤ Ordenar</button>
+        <button onClick={() => setMode('comprender')} className={tab(mode === 'comprender')}>🧠 Comprender</button>
+        <button onClick={() => setMode('ordenar')} className={tab(mode === 'ordenar')}>🔤 Ordenar</button>
       </div>
       <div className="flex gap-2 text-sm">
         {(['A1.1', 'A1.2'] as const).map((l) => (
@@ -86,12 +86,12 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
 
       <div className={box}>
         <div className="flex items-center justify-between text-xs opacity-60">
-          <span>OraciÃ³n {idx + 1} / {sentences.length}</span>
+          <span>Oración {idx + 1} / {sentences.length}</span>
           <span>{mode === 'comprender' ? 'Escucha y elige el significado' : 'Escucha y ordena lo que oyes'}</span>
         </div>
         <div className="mt-4 flex justify-center gap-2">
-          <button aria-label="Escuchar oración" onClick={() => speak(s.text)} className={ghost}>ðŸ”Š Escuchar</button>
-          <button aria-label="Escuchar oración lenta" onClick={() => speak(s.text, true)} className={ghost}>ðŸ¢ Lento</button>
+          <button aria-label="Escuchar oración" onClick={() => speak(s.text)} className={ghost}>🔊 Escuchar</button>
+          <button aria-label="Escuchar oración lenta" onClick={() => speak(s.text, true)} className={ghost}>🐢 Lento</button>
         </div>
 
         {mode === 'comprender' && !shown && (
@@ -107,15 +107,15 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
                 </button>
               )
             })}
-            {failed && <p className="pt-1 text-center text-sm text-red-700 dark:text-red-400">âŒ No es esa. Intenta de nuevo.</p>}
-            {failed && <button onClick={retryOrNext} className="w-full rounded-lg border border-stone-300 dark:border-neutral-700 p-2 text-sm hover:bg-stone-200 dark:hover:bg-neutral-800">Siguiente oraciÃ³n â†’</button>}
+            {failed && <p className="pt-1 text-center text-sm text-red-700 dark:text-red-400">❌ No es esa. Intenta de nuevo.</p>}
+            {failed && <button onClick={retryOrNext} className="w-full rounded-lg border border-stone-300 dark:border-neutral-700 p-2 text-sm hover:bg-stone-200 dark:hover:bg-neutral-800">Siguiente oración →</button>}
           </div>
         )}
 
         {mode === 'ordenar' && !shown && (
           <div className="mt-5 space-y-3">
             <div className="min-h-[3rem] rounded-lg border border-dashed border-stone-300 dark:border-neutral-700 p-2">
-              {built.length === 0 && <span className="text-xs opacity-50">Construye la oraciÃ³n tocando las palabrasâ€¦</span>}
+              {built.length === 0 && <span className="text-xs opacity-50">Construye la oración tocando las palabras…</span>}
               <div className="flex flex-wrap gap-1.5">
                 {built.map((pos, n) => (
                   <button key={pos + n} onClick={() => setBuilt((b) => b.filter((_, k) => k !== n))}
@@ -137,7 +137,7 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
               <button onClick={checkOrder} disabled={!built.length} className={`${bigBtn} flex-1 disabled:opacity-40`}>Comprobar</button>
               <button onClick={() => { setBuilt([]) }} className={ghost} disabled={!built.length}>Limpiar</button>
             </div>
-            {failed && <p className="text-center text-sm text-red-700 dark:text-red-400">âŒ No es asÃ­. Reinicia y vuelve a intentarlo.</p>}
+            {failed && <p className="text-center text-sm text-red-700 dark:text-red-400">❌ No es así. Reinicia y vuelve a intentarlo.</p>}
           </div>
         )}
 
@@ -146,15 +146,15 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
             <div className="text-xl font-semibold">{mode === 'comprender' ? s.text : (
               <span> {s.text.split(/\s+/).map((word, i) => (
                 <span key={i}>
-                  <button aria-label="Ver traducción" onClick={() => wordTip(word)} className="underline decoration-dotted decoration-orange-400/60 underline-offset-4 hover:text-orange-700 dark:text-orange-300" title="Ver traducciÃ³n">{word}</button>
+                  <button aria-label="Ver traducción" onClick={() => wordTip(word)} className="underline decoration-dotted decoration-orange-400/60 underline-offset-4 hover:text-orange-700 dark:text-orange-300" title="Ver traducción">{word}</button>
                   <span> </span>
                 </span>
               ))}
               </span>
             )}</div>
-            {tip && <div className="rounded-lg bg-stone-200 dark:bg-neutral-800 px-3 py-2 text-sm text-orange-700 dark:text-orange-300">ðŸ” {tip.word}: {tip.es}</div>}
-            <div className="text-sm text-green-700 dark:text-green-400">âœ… {s.es}</div>
-            <button onClick={next} className={bigBtn}>Siguiente oraciÃ³n â†’</button>
+            {tip && <div className="rounded-lg bg-stone-200 dark:bg-neutral-800 px-3 py-2 text-sm text-orange-700 dark:text-orange-300">🔍 {tip.word}: {tip.es}</div>}
+            <div className="text-sm text-green-700 dark:text-green-400">✅ {s.es}</div>
+            <button onClick={next} className={bigBtn}>Siguiente oración →</button>
           </div>
         )}
       </div>
@@ -162,7 +162,7 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
   )
 }
 
-// traducciÃ³n palabra por palabra al tocar una palabra de la oraciÃ³n revelada
+// traducción palabra por palabra al tocar una palabra de la oración revelada
 const tipCache = new Map<string, string>()
 
 function shuffleDistractors(correct: Sentence, pool: Sentence[]): string[] {
