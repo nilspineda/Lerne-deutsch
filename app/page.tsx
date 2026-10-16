@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { topicLabel } from '@/lib/types'
 import AddRandom from '@/components/AddRandom'
+import InstallPrompt from '@/components/InstallPrompt'
 
 type Row = { track: string; due: string; interval_days: number; words: { topic: string; level: string } | null }
 type Cat = { topic: string; level: string }
@@ -80,7 +81,8 @@ export default async function Home() {
         <p className={box}>Aún no tienes palabras. Ve a <Link className="underline" href="/words">Palabras</Link> y agrega algunas (o 5 al azar).</p>
       )}
       <h2 className="font-semibold">Progreso por tema</h2>
-      <div className="space-y-5">
+    <div className="space-y-5">
+      <InstallPrompt />
         {[...byLevel.entries()].map(([level, groupsOfLevel]) => (
           <div key={level} className="space-y-2">
             <div className="flex items-center gap-2">
