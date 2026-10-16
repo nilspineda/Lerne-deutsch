@@ -75,8 +75,8 @@ export default function GrammarLesson({ rule, exercises }: { rule: Rule; exercis
     setPicked(a)
     const ok = a === card.answer
     if (!ok) speak(card.sentence.replace('___', card.answer), true)
-    // acierto rápido; error con más tiempo para leer la explicación
-    setTimeout(() => rate(ok ? 2 : 0), ok ? 700 : 2800)
+    // acierto rápido; error con más tiempo para leer la explicación del porqué
+    setTimeout(() => rate(ok ? 2 : 0), ok ? 700 : 5000)
   }
 
   function revealAnswer() {
@@ -86,8 +86,9 @@ export default function GrammarLesson({ rule, exercises }: { rule: Rule; exercis
     setTimeout(() => rate(1), 900)
   }
 
-  // teoría: párrafos separados por doble salto
-  const paragraphs = rule.body.split('\n\n')
+  // teoría: el body guarda \n literales (SQL simple), convertir a saltos reales
+  const bodyText = rule.body.replace(/\\n/g, '\n')
+  const paragraphs = bodyText.split('\n\n')
   const examples = Array.isArray(rule.examples) ? rule.examples : []
 
   return (
@@ -147,7 +148,17 @@ export default function GrammarLesson({ rule, exercises }: { rule: Rule; exercis
               ))}
             </div>
             {picked && picked !== card.answer && (
-              <div className="mt-3 text-sm font-medium text-red-400">Era «{card.answer}»{card.hint ? ` — ${card.hint}` : ''}</div>
+              <div className="mt-3 space-y-2 rounded-lg bg-red-50 p-3 text-left dark:bg-red-950/40">
+                <div className="text-sm font-bold text-red-600 dark:text-red-400">
+                  ❌ Elegiste «{picked}» · lo correcto era «{card.answer}»
+                </div>
+                <div className="text-lg font-semibold">{card.sentence.replace('___', card.answer)}</div>
+                {card.hint && (
+                  <div className="text-sm text-stone-700 dark:text-stone-300">
+                    💡 <b>Por qué:</b> {card.hint}
+                  </div>
+                )}
+              </div>
             )}
             {picked === card.answer && card.hint && <div className="mt-3 text-sm font-medium text-green-400">{card.hint}</div>}
             {!picked && (

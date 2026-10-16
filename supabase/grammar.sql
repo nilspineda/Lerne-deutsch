@@ -1,4 +1,4 @@
-﻿-- ============ MÃ³dulo de GramÃ¡tica: mini-lecciones + ejercicios cloze con SRS (idempotente) ============
+﻿-- ============ Módulo de Gramática: mini-lecciones + ejercicios cloze con SRS (idempotente) ============
 -- Ejecutar TODO el bloque en Supabase SQL Editor.
 
 -- ---------- 1) Tablas ----------
@@ -51,115 +51,56 @@ create policy "grammar_srs: todo lo propio"              on public.grammar_srs  
 
 -- ---------- 2) Lecciones ----------
 insert into public.grammar_rules (slug, level, order_idx, title, body, examples) values
-('articulos', 'A1.1', 1, 'Los artÃ­culos: der / die / das',
-  'Todo sustantivo alemÃ¡n tiene un gÃ©nero: masculino (der), femenino (die) o neutro (das). El artÃ­culo va SIEMPRE con la palabra: aprende "die Schule", no "Schule".
-Pistas frecuentes:
-â€¢ -ung, -heit, -keit, -schaft, -tion â†’ DIE (die Zeitung, die Freiheit)
-â€¢ -chen, -lein â†’ DAS (das MÃ¤dchen)
-â€¢ dÃ­as, meses, estaciones â†’ DER (der Montag, der Sommer)
-â€¢ -er de aparatos y verbos sustantivados â†’ DER o DAS, hay que memorizarlos.
-Truco: practica siempre "palabra = artÃ­culo".',
-  '[{"de":"Der Tag","es":"el dÃ­a (masc.)"},{"de":"Die Zeitung","es":"el periÃ³dico (fem. por -ung)"},{"de":"Das MÃ¤dchen","es":"la niÃ±a (neutro por -chen)"},{"de":"Der Montag","es":"el lunes (los dÃ­as son der)"}]'::jsonb),
+('articulos', 'A1.1', 1, 'Los artículos: der / die / das',
+  'Todo sustantivo alemán tiene un género: masculino (der), femenino (die) o neutro (das). El artículo va SIEMPRE con la palabra: aprende "die Schule", no "Schule".\n\nPistas frecuentes:\n• -ung, -heit, -keit, -schaft, -tion → DIE (die Zeitung, die Freiheit)\n• -chen, -lein → DAS (das Mädchen)\n• días, meses, estaciones → DER (der Montag, der Sommer)\n• -er de aparatos y verbos sustantivados → DER o DAS, hay que memorizarlos.\n\nTruco: practica siempre "palabra = artículo".',
+  '[{"de":"Der Tag","es":"el día (masc.)"},{"de":"Die Zeitung","es":"el periódico (fem. por -ung)"},{"de":"Das Mädchen","es":"la niña (neutro por -chen)"},{"de":"Der Montag","es":"el lunes (los días son der)"}]'::jsonb),
 
 ('sein-haben', 'A1.1', 2, 'sein y haben',
-  'Los dos verbos mÃ¡s importantes, irregulares. MemorÃ­zalos conjugados:
-sein: ich bin Â· du bist Â· er ist Â· wir sind Â· ihr seid Â· sie sind
-haben: ich habe Â· du hast Â· er hat Â· wir haben Â· ihr habt Â· sie haben
-Uso:
-â€¢ sein + adjetivo: Ich bin mÃ¼de. (Estoy cansado.)
-â€¢ haben + nombre: Ich habe Zeit. (Tengo tiempo.)
-Â¡Cuidado con "Ich bin kalt" = tengo frÃ­o corporal; para "me da frÃ­o" se dice: Mir ist kalt. (Dativo â€” lecciÃ³n de A1.2.)',
-  '[{"de":"Ich bin mÃ¼de.","es":"Estoy cansado."},{"de":"Du bist nett.","es":"Eres amable."},{"de":"Er hat ein Auto.","es":"Ã‰l tiene un coche."},{"de":"Wir haben keine Zeit.","es":"No tenemos tiempo."}]'::jsonb),
+  'Los dos verbos más importantes, irregulares. Memorízalos conjugados:\n\nsein: ich bin · du bist · er ist · wir sind · ihr seid · sie sind\nhaben: ich habe · du hast · er hat · wir haben · ihr habt · sie haben\n\nUso:\n• sein + adjetivo: Ich bin müde. (Estoy cansado.)\n• haben + nombre: Ich habe Zeit. (Tengo tiempo.)\n\nCuidado: "Ich bin kalt" = tengo el cuerpo frío; para "me da frío" se dice: Mir ist kalt. (Dativo — lección de A1.2)',
+  '[{"de":"Ich bin müde.","es":"Estoy cansado."},{"de":"Du bist nett.","es":"Eres amable."},{"de":"Er hat ein Auto.","es":"Él tiene un coche."},{"de":"Wir haben keine Zeit.","es":"No tenemos tiempo."}]'::jsonb),
 
 ('praesens', 'A1.1', 3, 'Presente: verbos regulares',
-  'Quita la terminaciÃ³n -en del infinitivo y aÃ±ade:
-ich -e Â· du -st Â· er -t Â· wir -en Â· ihr -t Â· sie -en
-spielen â†’ ich spiele, du spielst, er spielt, wir spielen, ihr spielt, sie spielen.
-OrtografÃ­a: si la raÃ­z acaba en -t/-d, du aÃ±ade -e: arbeiten â†’ du arbeitest.
-Con e en la raÃ­z (lesen): du liest, er liest (e â†’ ie en du/er).',
-  '[{"de":"Ich lerne Deutsch.","es":"Aprendo alemÃ¡n."},{"de":"Du wohnst in KÃ¶ln.","es":"Vives en Colonia."},{"de":"Er arbeitet viel.","es":"Ã‰l trabaja mucho."},{"de":"Wir hÃ¶ren Musik.","es":"Escuchamos mÃºsica."}]'::jsonb),
+  'Quita la terminación -en del infinitivo y añade:\n\nich -e · du -st · er -t · wir -en · ihr -t · sie -en\n\nspielen → ich spiele, du spielst, er spielt, wir spielen, ihr spielt, sie spielen.\n\nOrtografía: si la raíz acaba en -t/-d, du añade -e: arbeiten → du arbeitest.\nCon e en la raíz (lesen): du liest, er liest (e → ie en du/er).',
+  '[{"de":"Ich lerne Deutsch.","es":"Aprendo alemán."},{"de":"Du wohnst in Köln.","es":"Vives en Colonia."},{"de":"Er arbeitet viel.","es":"Él trabaja mucho."},{"de":"Wir hören Musik.","es":"Escuchamos música."}]'::jsonb),
 
-('w-fragen', 'A1.1', 4, 'Preguntas: W-Fragen y sÃ­/no',
-  'W-Fragen: van al principio y detrÃ¡s va el VERBO en 2Âª posiciÃ³n:
-Wo wohnst du? Â· Was machst du? Â· Wann beginnt der Film? Â· Wie heiÃŸt du? Â· Wer ist das? Â· Warum lernst du Deutsch?
-Preguntas de sÃ­/no: el verbo va en PRIMERA posiciÃ³n:
-Bist du mÃ¼de? Â· Hast du Zeit?',
-  '[{"de":"Wo wohnst du?","es":"Â¿DÃ³nde vives?"},{"de":"Was machst du?","es":"Â¿QuÃ© haces?"},{"de":"Wann beginnt der Film?","es":"Â¿CuÃ¡ndo empieza la pelÃ­cula?"},{"de":"Bist du mÃ¼de?","es":"Â¿EstÃ¡s cansado? (verbo primero)"}]'::jsonb),
+('w-fragen', 'A1.1', 4, 'Preguntas: W-Fragen y sí/no',
+  'W-Fragen: van al principio y detrás va el VERBO en 2ª posición:\n\nWo wohnst du? · Was machst du? · Wann beginnt der Film? · Wie heißt du? · Wer ist das? · Warum lernst du Deutsch?\n\nPreguntas de sí/no: el verbo va en PRIMERA posición:\nBist du müde? · Hast du Zeit?',
+  '[{"de":"Wo wohnst du?","es":"¿Dónde vives?"},{"de":"Was machst du?","es":"¿Qué haces?"},{"de":"Wann beginnt der Film?","es":"¿Cuándo empieza la película?"},{"de":"Bist du müde?","es":"¿Estás cansado? (verbo primero)"}]'::jsonb),
 
-('negacion', 'A1.1', 5, 'NegaciÃ³n: nicht y kein',
-  'Dos negaciones, cada una para su terreno:
-â€¢ KEIN (keine, keinenâ€¦) niega NOMBRES con artÃ­culo indefinido o sin artÃ­culo: Ich habe kein Auto. / Kein Problem!
-â€¢ NICHT niega todo lo demÃ¡s (verbos, adjetivos, adverbios, nombres con artÃ­culo determinado) y va lo mÃ¡s tarde posible: Ich schlafe nicht. / Das Auto ist nicht neu. / Das ist nicht mein Buch.
-Truco: Â¿cuenta cosas (ein, alguno)? â†’ kein. Â¿El resto? â†’ nicht.',
-  '[{"de":"Ich habe kein Auto.","es":"No tengo coche (nombre indefinido)."},{"de":"Das ist nicht neu.","es":"Eso no es nuevo (adjetivo)."},{"de":"Er kommt nicht.","es":"Ã‰l no viene (verbo)."},{"de":"Kein Problem!","es":"Â¡Sin problema!"}]'::jsonb),
+('negacion', 'A1.1', 5, 'Negación: nicht y kein',
+  'Dos negaciones, cada una para su terreno:\n\n• KEIN (keine, keinen…) niega NOMBRES con artículo indefinido o sin artículo: Ich habe kein Auto. / Kein Problem!\n• NICHT niega todo lo demás (verbos, adjetivos, adverbios, nombres con artículo determinado) y va lo más tarde posible: Ich schlafe nicht. / Das Auto ist nicht neu. / Das ist nicht mein Buch.\n\nTruco: ¿cuenta cosas (ein, alguno)? → kein. ¿El resto? → nicht.',
+  '[{"de":"Ich habe kein Auto.","es":"No tengo coche (nombre indefinido)."},{"de":"Das ist nicht neu.","es":"Eso no es nuevo (adjetivo)."},{"de":"Er kommt nicht.","es":"Él no viene (verbo)."},{"de":"Kein Problem!","es":"¡Sin problema!"}]'::jsonb),
 
 ('plural', 'A1.1', 6, 'El plural',
-  'El plural depende de cada palabra (aprÃ©ndelo con la palabra), pero hay patrones:
-â€¢ -(e)n: la mayorÃ­a de femeninas: die Frau â†’ die Frauen
-â€¢ -e (Â± umlaut): der Tisch â†’ die Tische, der Apfel â†’ die Ã„pfel
-â€¢ -er (Â± umlaut): das Kind â†’ die Kinder, der Mann â†’ die MÃ¤nner
-â€¢ -s: extranjeros y -er aparatos: das Auto â†’ die Autos
-â€¢ sin cambio: das Zimmer â†’ die Zimmer
-OJO: TODOS los plurales de nominativo/acusativo llevan articulo DIE, aunque el singular sea der o das:
-die Autos, die Kinder.',
-  '[{"de":"die Tische","es":"las mesas (der Tisch â†’ -e)"},{"de":"die Frauen","es":"las mujeres (die Frau â†’ -en)"},{"de":"die Kinder","es":"los niÃ±os (das Kind â†’ -er)"},{"de":"die Autos","es":"los coches (das Auto â†’ -s)"}]'::jsonb),
+  'El plural depende de cada palabra (apréndelo con la palabra), pero hay patrones:\n\n• -(e)n: la mayoría de femeninas: die Frau → die Frauen\n• -e (± umlaut): der Tisch → die Tische, der Apfel → die Äpfel\n• -er (± umlaut): das Kind → die Kinder, der Mann → die Männer\n• -s: palabra extranjeras y -er aparatos: das Auto → die Autos\n• sin cambio: das Zimmer → die Zimmer\n\nOJO: TODOS los plurales de nominativo/acusativo llevan artículo DIE, aunque el singular sea der o das.\n\nQuizás lo más raro wikt: die Autos, die Kinder (de das Auto, das Kinder... das Kind!).',
+  '[{"de":"die Tische","es":"las mesas (der Tisch → -e)"},{"de":"die Frauen","es":"las mujeres (die Frau → -en)"},{"de":"die Kinder","es":"los niños (das Kind → -er)"},{"de":"die Autos","es":"los coches (das Auto → -s)"}]'::jsonb),
 
 ('akkusativ', 'A1.2', 1, 'Akkusativ: el caso del objeto',
-  'Cuando algo es el OBJETO de la acciÃ³n, solo cambia el MASCULINO:
-der â†’ den Â· die â†’ die Â· das â†’ das
-Ich sehe den Mann. (veo AL hombre, masc. objeto)
-Ich sehe die Frau / das Kind. (fem. y neutro no cambian en formulario)
-Los pronombres tambiÃ©n cambian: ich â†’ mich, du â†’ dich.
-Con movimiento (a dÃ³nde) preposiciÃ³n Wechsel + Akkusativ: Ich gehe in den Supermarkt.',
-  '[{"de":"Ich sehe den Mann.","es":"Veo al hombre (masc. â†’ den)."},{"de":"Ich kaufe die Milch.","es":"Compro la leche (fem. no cambia)."},{"de":"Ich habe das Buch.","es":"Tengo el libro (neutro no cambia)."},{"de":"Er fragt mich.","es":"Ã‰l me pregunta (yo â†’ mich)."}]'::jsonb),
+  'Cuando algo es el OBJETO de la acción, solo cambia el MASCULINO:\n\nder → den · die → die · das → das\n\nIch sehe den Mann. (veo AL hombre, masc. objeto)\nIch sehe die Frau / das Kind. (fem. y neutro no cambian de forma)\n\nLos pronombres también cambian: ich → mich, du → dich.\n\nCon movimiento (a dónde) preposición Wechsel + Akkusativ: Ich gehe in den Supermarkt.',
+  '[{"de":"Ich sehe den Mann.","es":"Veo al hombre (masc. → den)."},{"de":"Ich kaufe die Milch.","es":"Compro la leche (fem. no cambia)."},{"de":"Ich habe das Buch.","es":"Tengo el libro (neutro no cambia)."},{"de":"Er fragt mich.","es":"Él me pregunta (yo → mich)."}]'::jsonb),
 
-('dativ', 'A1.2', 2, 'Dativ: el caso de "a quiÃ©n / con quÃ©"',
-  'El Dativ marca el objeto INDIRECTO (a quiÃ©n) y lo alternador de muchas preposiciones:
-der â†’ dem Â· die â†’ der Â· das â†’ dem Â· plural: den + -n (die Kinder â†’ den Kindern)
-Ich gebe dem Freund das Buch. (le doy el libro AL amigo)
-Pronombres: du â†’ dir, ich â†’ mir, sie (ella) â†’ ihr.
-Verbos tÃ­picos con dativ: helfen, danken, gehÃ¶ren, gefallen, passen.
-Con posiciÃ³n (dÃ³nde): preposiciÃ³n Wechsel + Dativ: Das Buch ist auf dem Tisch.',
-  '[{"de":"Ich helfe dem Mann.","es":"Ayudo al hombre (helfen + Dat)."},{"de":"Sie dankt ihrer Mutter.","es":"Agradece a su madre (die â†’ derâ†’ihrâ€¦)."},{"de":"Ich gebe dir das Buch.","es":"Te doy el libro (du â†’ dir)."},{"de":"Wir sprechen mit den Kindern.","es":"Hablamos con los niÃ±os (plural â†’ den Kindern)."}]'::jsonb),
+('dativ', 'A1.2', 2, 'Dativ: el caso de "a quién / con qué"',
+  'El Dativ marca el objeto INDIRECTO (a quién) y se usa con muchas preposiciones:\n\nder → dem · die → der · das → dem · plural: den + -n (die Kinder → den Kindern)\n\nIch gebe dem Freund das Buch. (le doy el libro AL amigo)\nPronombres: du → dir, ich → mir, sie (ella) → ihr.\n\nVerbos típicos con dativ: helfen, danken, gehören, gefallen, passen.\n\nCon posición (dónde): preposición Wechsel + Dativ: Das Buch ist auf dem Tisch.',
+  '[{"de":"Ich helfe dem Mann.","es":"Ayudo al hombre (helfen + Dat)."},{"de":"Sie dankt ihrer Mutter.","es":"Agradece a su madre (ihrer Mutter: Dat + posesivo fem.)."},{"de":"Ich gebe dir das Buch.","es":"Te doy el libro (du → dir)."},{"de":"Wir sprechen mit den Kindern.","es":"Hablamos con los niños (plural → den Kindern)."}]'::jsonb),
 
-('possessiv', 'A1.2', 3, 'Los posesivos: mein, dein, seinâ€¦',
-  'Los posesivos se declinan igual que EIN:
-â€¢ der Mann â†’ mein Bruder (masc. nom., sin terminaciÃ³n con derâ€¦: mein)
-â€¢ den Mann â†’ meinen Bruder (masc. acuativo: + en)
-â€¢ dem Mann â†’ meinem (masc. dativo: + em)
-â€¢ die Frau â†’ meine Â· das Kind â†’ mein Kind
-Poseedores: mein (yo) Â· dein (tÃº) Â· sein (Ã©l) Â· ihr (ella) Â· unser (nos.) Â· euer (vos.) Â· ihr/Sie (ellos/Uds.).
-Â¡Wichtig!: ihr significa TAMBIÃ‰N "de ella" Y "de ellos/Uds." â€” el contexto decide.',
-  '[{"de":"mein Bruder","es":"mi hermano (masc. nominativo)."},{"de":"Ich sehe meinen Vater.","es":"Veo a mi padre (masc. acuativo: mein_en)."},{"de":"Ich fahre mit meinem Auto.","es":"Voy con mi coche (dativo: mein_em)."},{"de":"Das ist ihre Tasche.","es":"Es su bolso (de ella: die â†’ ihre)."}]'::jsonb),
+('possessiv', 'A1.2', 3, 'Los posesivos: mein, dein, sein…',
+  'Los posesivos se declinan igual que EIN:\n\n• der Mann → mein Bruder (masc. nominativo: mein)\n• den Mann → meinen Bruder (masc. acusativo: + en)\n• dem Mann → meinem (masc. dativo: + em)\n• die Frau → meine · das Kind → mein Kind\n\nPoseedores: mein (yo) · dein (tú) · sein (él) · ihr (ella) · unser (nos.) · euer (vos.) · ihr/Sie (ellos/Uds.).\n\n¡Ojo!: ihr significa TAMBIÉN "de ella" Y "de ellos/Uds." — el contexto decide.',
+  '[{"de":"mein Bruder","es":"mi hermano (masc. nominativo)."},{"de":"Ich sehe meinen Vater.","es":"Veo a mi padre (masc. acusativo: mein_en)."},{"de":"Ich fahre mit meinem Auto.","es":"Voy con mi coche (dativo: mein_em)."},{"de":"Das ist ihre Tasche.","es":"Es su bolso (de ella: die → ihre)."}]'::jsonb),
 
 ('es-gibt', 'A1.2', 4, 'es gibt: hay + Akkusativ',
-  '"Es gibt" = hay. SIEMPRE con Akkusativ (singular neutro nominativo queda la forma fija):
-Es gibt einen Supermarkt hier. (masc. â†’ einen)
-Es gibt keinen Park. (no hay parque â†’ keinen, tambiÃ©n la negaciÃ³n cambia)
-Femeninas y plurales no se ven afectadas: Es gibt eine Apotheke. / Es gibt Probleme.
-Pregunta: Gibt es hier einen Fernseher?',
-  '[{"de":"Es gibt einen Fehler.","es":"Hay un error (masc. â†’ einen)."},{"de":"Gibt es hier eine Apotheke?","es":"Â¿Hay una farmacia aquÃ­? (fem. â†’ eine)."},{"de":"Es gibt keinen Zucker.","es":"No hay azÃºcar (masc. â†’ keinen)."},{"de":"Es gibt Probleme.","es":"Hay problemas (plural sin cambio)."}]'::jsonb),
+  '"Es gibt" = hay. SIEMPRE con Akkusativ:\n\nEs gibt einen Supermarkt hier. (masc. → einen)\nEs gibt keinen Park. (no hay parque → keinen, también la negación declina)\n\nFemeninas y plurales no cambian de forma: Es gibt eine Apotheke. / Es gibt Probleme.\n\nPregunta: Gibt es hier einen Fernseher?',
+  '[{"de":"Es gibt einen Fehler.","es":"Hay un error (masc. → einen)."},{"de":"Gibt es hier eine Apotheke?","es":"¿Hay una farmacia aquí? (fem. → eine)."},{"de":"Es gibt keinen Zucker.","es":"No hay azúcar (masc. sin artículo → keinen)."},{"de":"Es gibt Probleme.","es":"Hay problemas (plural sin cambio)."}]'::jsonb),
 
 ('adjektive', 'A1.2', 5, 'Adjetivos delante del sustantivo',
-  'Con DER/DIE/DAS el adjetivo toma -e:
-der alt_ Mann â†’ der alte Mann Â· die rot_ Tasche â†’ die rote Tasche Â· das klein_ Kind â†’ das kleine Kind
-Con EIN y en caso con terminaciÃ³n dÃ©bil, el adjetivo toma -en:
-ein alt_ Table â†’ ein alter Tisch (masc. nom.) Â· ein alt_ Kind â†’ ein altes Kind (neutro)
-den alten Mann Â· mit einem alten Mann.
-Regla de arranque: der/die/das â†’ -e; ein (masc. y neutro) â†’ -er / -es.',
-  '[{"de":"der alte Mann","es":"el hombre mayor (der â†’ -e)."},{"de":"ein altes Auto","es":"un coche viejo (ein + neutro â†’ -es)."},{"de":"eine rote Tasche","es":"un bolso rojo (fem. â†’ -e)."},{"de":"den neuen Film","es":"la nueva pelÃ­cula (den â†’ -en)."}]'::jsonb),
+  'Con DER/DIE/DAS el adjetivo toma -e:\n\nder alte Mann · die rote Tasche · das kleine Kind\n\nCon EIN, el adjetivo marca el género:\n• ein alter Tisch (masc. nom. → -er)\n• ein altes Auto (neutro → -es)\n• eine rote Tasche (fem. → -e)\n\nY en el resto de casos (acusativo de ein, dativo en general) el adjetivo toma -en:\nden alten Mann · mit einem alten Mann',
+  '[{"de":"der alte Mann","es":"el hombre mayor (der → -e)."},{"de":"ein altes Auto","es":"un coche viejo (ein + neutro → -es)."},{"de":"eine rote Tasche","es":"una bolsa roja (fem. → -e)."},{"de":"mit einem alten Mann","es":"con un hombre mayor (dativo → -en)."}]'::jsonb),
 
-('imperativ', 'A1.2', 6, 'El imperativo: dar Ã³rdenes',
-  'Tres formas segÃºn a quiÃ©n le hables:
-â€¢ DU: raÃ­z sola: Komm! Â· Sprich langsamer! (sprechen â†’ sprich)
-â€¢ IHR: presente de ihr sin pronombre: Kommt! Â· Spielt!
-â€¢ SIE formal: verbo + Sie: Kommen Sie bitte!
-Verbos reforzados en e (nehmen â†’ nimm! lesen â†’ lies!). No se dice el pronombre du.',
-  '[{"de":"Komm bitte!","es":"Â¡Ven, por favor (a ti)!"},{"de":"Kommt alle mit!","es":"Â¡Vengan todos (vosotros)!"},{"de":"Kommen Sie herein!","es":"Â¡Pase usted!"},{"de":"Nimm den Bus!","es":"Â¡Causa el autobÃºs (du de nehmen â†’ nimm)!"}]'::jsonb)
+('imperativ', 'A1.2', 6, 'El imperativo: dar órdenes',
+  'Tres formas según a quién le hables:\n\n• DU: raíz sola: Komm! · Sprich langsamer! (sprechen → sprich)\n• IHR: presente de ihr sin pronombre: Kommt! · Spielt!\n• SIE formal: verbo + Sie: Kommen Sie bitte!\n\nVerbos fuertes cambian la vocal: nehmen → take nimm! · lesen → lies! · essen → iss!\nNo se dice el pronombre du al dar la orden.',
+  '[{"de":"Komm bitte!","es":"¡Ven, por favor (a ti)!"},{"de":"Kommt alle mit!","es":"¡Vengan todos (vosotros)!"},{"de":"Kommen Sie herein!","es":"¡Pase usted!"},{"de":"Nimm den Bus!","es":"¡Toma el autobús! (du de nehmen → nimm)"}]'::jsonb)
 on conflict (slug) do update set
   level = excluded.level, order_idx = excluded.order_idx, title = excluded.title,
   body = excluded.body, examples = excluded.examples;
-
 
 -- ---------- 3) Ejercicios ----------
 delete from public.grammar_exercises;  -- re-seed limpio (idempotente si actualizamos contenido)
@@ -168,10 +109,10 @@ insert into public.grammar_exercises (rule_id, sentence, options, answer, hint)
 select r.id, e.sentence, e.options, e.answer, e.hint
 from public.grammar_rules r
 join (values
-  ('articulos','___ Zeitung liegt auf dem Tisch.', array['Der','Die','Das'], 'Die','por -ung → DIE'),
+  ('articulos','___ Zeitung liegt auf dem Tisch.', array['Der','Die','Das'],'Die','por -ung → DIE'),
   ('articulos','___ Mädchen heißt Anna.', array['Der','Das','Dem'],'Das','-chen → DAS'),
   ('articulos','___ Sommer ist warm.', array['Der','Die','Das'],'Der','estaciones → DER'),
-  ('articulos','___ Idee ist gut.', array['Die','Der','Das'],'Die','die Idee'),
+  ('articulos','___ Idee ist gut.', array['Die','Der','Das'],'Die','die Idee (fem.)'),
   ('articulos','___ Auto ist neu.', array['Der','Dem','Die'],'Der','das Auto (neutro)'),
   ('articulos','___ Freiheit ist wichtig.', array['Die','Der','Das'],'Die','-heit → DIE')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
@@ -196,7 +137,7 @@ join (values
   ('praesens','Du ___ in Köln.', array['wohnst','wohnt','wohnen'],'wohnst','du → -st'),
   ('praesens','Er ___ viel.', array['arbeitet','arbeitest','arbeiten'],'arbeitet','er → -t'),
   ('praesens','Ihr ___ Musik.', array['hört','hören','höre'],'hört','ihr → -t'),
-  ('praesens','Du ___ ein Buch. (lesen)', array['liest','liesst','lese'],'liest','lesen: du/er → ie'),
+  ('praesens','Du ___ ein Buch. (lesen)', array['liest','ließt','lese'],'liest','lesen: du/er → ie'),
   ('praesens','Sie (plural) ___ ins Kino.', array['gehen','geht','gehe'],'gehen','sie → -en')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
@@ -208,7 +149,7 @@ join (values
   ('w-fragen','___ machst du heute?', array['Was','Wo','Wie'],'Was','¿qué?'),
   ('w-fragen','___ heißt du?', array['Wie','Wer','Was'],'Wie','¿cómo?'),
   ('w-fragen','___ beginnt der Film?', array['Wann','Warum','Was'],'Wann','¿cuándo?'),
-  ('w-fragen','___ lernen Deutsch? — Alle.', array['Wer','Wo','Wann'],'Wer','¿quién?'),
+  ('w-fragen','___ lernt Deutsch? — Anna.', array['Wer','Wo','Wann'],'Wer','¿quién?'),
   ('w-fragen','___ lernst du Deutsch? — Für die Arbeit.', array['Warum','Was','Wo'],'Warum','¿por qué?')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
@@ -220,7 +161,7 @@ join (values
   ('negacion','Das Auto ist ___ neu.', array['nicht','kein','keine'],'nicht','adjetivo → nicht'),
   ('negacion','Ich schlafe ___.', array['nicht','kein','keine'],'nicht','verbo → nicht'),
   ('negacion','Er hat ___ Zeit.', array['keine','kein','nicht'],'keine','die Zeit fem. → keine'),
-  ('negacion','Das ist ___ mein Buch.', array['nicht','kein','kein das'],'nicht','con artículo determinado → nicht'),
+  ('negacion','Das ist ___ mein Buch.', array['nicht','kein','keine'],'nicht','con artículo determinado → nicht'),
   ('negacion','___ Problem!', array['Kein','Nicht','Keine'],'Kein','das Problem → kein')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
@@ -241,11 +182,11 @@ select r.id, e.sentence, e.options, e.answer, e.hint
 from public.grammar_rules r
 join (values
   ('akkusativ','Ich sehe ___ Mann.', array['den','der','dem'],'den','masc. objeto → den'),
-  ('akkusativ','Er kauft ___ Tisch. (der Tisch)', array['den','dem','der'],'den','"—"'),
+  ('akkusativ','Er kauft ___ Tisch. (der Tisch)', array['den','dem','der'],'den','der → den en acusativo'),
   ('akkusativ','Ich kaufe ___ Brot. (das Brot)', array['das','den','dem'],'das','neutro no cambia'),
   ('akkusativ','Er fragt ___. (ich)', array['mich','ich','mir'],'mich','pron. ich → mich (Akk)'),
-  ('akkusativ','Ich gehe in ___ Supermarkt. (bewegung)', array['den','dem','der'],'den','a dónde → Akkusativ (masc.)'),
-  ('akkusativ','Kenne ___? (du)', array['dich','du','dir'],'dich','du → dich (Akk)')
+  ('akkusativ','Ich gehe in ___ Supermarkt. (movimiento)', array['den','dem','der'],'den','a dónde → Akkusativ (masc.)'),
+  ('akkusativ','Kennst ___? (du)', array['dich','du','dir'],'dich','du → dich (Akk)')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
 insert into public.grammar_exercises (rule_id, sentence, options, answer, hint)
@@ -257,7 +198,7 @@ join (values
   ('dativ','Ich gebe ___ das Buch. (du)', array['dir','dich','du'],'dir','du → dir (Dat)'),
   ('dativ','Sie dankt ___ Mutter.', array['ihrer','ihre','ihr'],'ihrer','ihrer Mutter (Dat + posesivo fem.)'),
   ('dativ','Wir sprechen mit ___ Kindern.', array['den','dem','die'],'den','plural dativ: den Kindern'),
-  ('dativ','___ ist kalt. (a mí)', array['Mir','Ich','Mich'],'Mir','las señas físicas → dativ')
+  ('dativ','___ ist kalt. (a mí)', array['Mir','Ich','Mich'],'Mir','cosas físicas → dativ')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
 insert into public.grammar_exercises (rule_id, sentence, options, answer, hint)
@@ -265,7 +206,7 @@ select r.id, e.sentence, e.options, e.answer, e.hint
 from public.grammar_rules r
 join (values
   ('possessiv','Das ist ___ Bruder.', array['mein','meinen','meinem'],'mein','masc. nominativo'),
-  ('possessiv','Ich sehe ___ Vater.', array['meinen','mein','meinem'],'meinen','masc. acuativo: + en'),
+  ('possessiv','Ich sehe ___ Vater.', array['meinen','mein','meinem'],'meinen','masc. acusativo: + en'),
   ('possessiv','Ich fahre mit ___ Auto.', array['meinem','meinen','mein'],'meinem','dativo: + em'),
   ('possessiv','___ Tasche ist rot. (de ella)', array['Ihre','Ihr','Ihrem'],'Ihre','die → ihre'),
   ('possessiv','Das ist ___ Kind. (de él)', array['sein','seine','seinem'],'sein','das Kind neutro: sin cambio'),
@@ -305,12 +246,9 @@ join (values
   ('imperativ','(usted) ___ bitte herein! (kommen)', array['Kommen','Komm','Kommt'],'Kommen','Sie → infinitivo'),
   ('imperativ','(a ti) ___ langsamer! (sprechen)', array['Sprich','Sprechen','Spricht'],'Sprich','sprechen → sprich'),
   ('imperativ','(a ti) ___ den Bus! (nehmen)', array['Nimm','Nehm','Nehmt'],'Nimm','nehmen → nimm'),
-  ('imperativ','(usted) ___ Sie bitte leise! (sein)', array['Sei','Sind','Seien'],'Seien','Sie formal → Seien')
+  ('imperativ','(usted) ___ Sie bitte leise! (sein)', array['Seien','Sind','Sei'],'Seien','usted/Sie → Seien')
 ) as e(slug, sentence, options, answer, hint) on e.slug = r.slug;
 
 select 'grammar: ' ||
        (select count(*) from public.grammar_rules) || ' lecciones · ' ||
        (select count(*) from public.grammar_exercises) || ' ejercicios' as resultado;
-
-
-
