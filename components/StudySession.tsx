@@ -72,8 +72,14 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
     const ins = await sb.from('review_log').insert({ word_id: card.word_id, track: card.track, rating: q })
     if (ins.error) { setErr('No se pudo registrar el repaso.'); return }
     setErr('')
-    setQueue((qs) => (q === 0 ? [...qs.slice(1), { ...card, ...n, due: n.due.toISOString() }] : qs.slice(1)))
-    if (q !== 0) setDone((d) => d + 1)
+    setQueue((qs) => {
+      const rest = qs.slice(1)
+      const withN = { ...card, ...n, due: n.due.toISOString() }
+      if (q === 0) return [...rest, withN] // 'Otra vez': siempre al final de la sesión
+      // colita extra: si fallaste al elegir la opción, la carta vuelve a la cola aunque califiques bien
+      return wrong ? [...rest, withN] : rest
+    })
+    if (q !== 0 && !wrong) setDone((d) => d + 1)
     setShown(false)
   }
 

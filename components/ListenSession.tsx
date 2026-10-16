@@ -90,8 +90,8 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
           <span>{mode === 'comprender' ? 'Escucha y elige el significado' : 'Escucha y ordena lo que oyes'}</span>
         </div>
         <div className="mt-4 flex justify-center gap-2">
-          <button onClick={() => speak(s.text)} className={ghost}>🔊 Escuchar</button>
-          <button onClick={() => speak(s.text, true)} className={ghost}>🐢 Lento</button>
+          <button aria-label="Escuchar oraci�n" onClick={() => speak(s.text)} className={ghost}>🔊 Escuchar</button>
+          <button aria-label="Escuchar oraci�n lenta" onClick={() => speak(s.text, true)} className={ghost}>🐢 Lento</button>
         </div>
 
         {mode === 'comprender' && !shown && (
@@ -146,7 +146,7 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
             <div className="text-xl font-semibold">{mode === 'comprender' ? s.text : (
               <span> {s.text.split(/\s+/).map((word, i) => (
                 <span key={i}>
-                  <button onClick={() => wordTip(word)} className="underline decoration-dotted decoration-orange-400/60 underline-offset-4 hover:text-orange-700 dark:text-orange-300" title="Ver traducción">{word}</button>
+                  <button aria-label="Ver traducci�n" onClick={() => wordTip(word)} className="underline decoration-dotted decoration-orange-400/60 underline-offset-4 hover:text-orange-700 dark:text-orange-300" title="Ver traducción">{word}</button>
                   <span> </span>
                 </span>
               ))}

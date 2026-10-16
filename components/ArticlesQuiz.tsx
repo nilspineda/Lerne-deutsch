@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import { speak } from '@/lib/speak'
@@ -38,18 +38,19 @@ export default function ArticlesQuiz({ level }: { level: string }) {
 
   const card = queue[0]
   const done = queue.length === 0 && !loading && score.total > 0
-
   async function logAnswer(wordId: string, correct: boolean) {
     await sb.from('quiz_log').insert({ word_id: wordId, quiz_type: 'artikel', correct })
   }
+
+  // solo el PRIMER intento por palabra enrique la precisión de las stats (los reintentos del retry sesgan)
+  const firstTry = useRef<Set<string>>(new Set())
 
   function pick(a: string) {
     if (picked || !card) return
     setPicked(a)
     const ok = a === card.article
+    if (!firstTry.current.has(card.id)) { firstTry.current.add(card.id); logAnswer(card.id, ok) }
     if (!ok) speak(card.de, true)
-    setScore((s) => ({ ok: s.ok + (ok ? 1 : 0), total: s.total + 1 }))
-    logAnswer(card.id, ok)
     setTimeout(() => {
       if (!ok) setRetry((r) => (r.some((x) => x.id === card.id) ? r : [...r, card]))
       setQueue((qs) => (!ok ? [...qs.slice(1), card] : qs.slice(1)))
@@ -93,7 +94,7 @@ export default function ArticlesQuiz({ level }: { level: string }) {
                 {retry.map((w, i) => (
                   <li key={w.id + '-' + i} className="flex items-center gap-2">
                     <span className="mr-auto"><span className="text-yellow-400">{w.article}</span> <b>{w.de}</b> <span className="opacity-60">— {w.es}</span></span>
-                    <button onClick={() => speak(w.de)} className="opacity-60 hover:opacity-100">🔊</button>
+                    <button aria-label="Escuchar palabra" onClick={() => speak(w.de)} className="opacity-60 hover:opacity-100">🔊</button>
                   </li>
                 ))}
               </ul>
@@ -108,7 +109,11 @@ export default function ArticlesQuiz({ level }: { level: string }) {
           </div>
           <div className="rounded-2xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 text-center">
             <div className="text-xs uppercase tracking-wide opacity-60">¿Cuál es el artículo?</div>
-            <button onClick={() => card && speak(card.de)} className="mt-2 text-4xl font-bold">{card?.de}</button>
+            <div className="mt-2 text-4xl font-bold">{card?.de}</div>
+            <div className="mt-2 flex justify-center gap-2">
+              <button aria-label="Escuchar pronunciación" onClick={() => card && speak(card.de)} className="rounded-lg border border-stone-300 dark:border-neutral-700 px-4 py-2 text-sm hover:bg-stone-200 dark:hover:bg-neutral-800">🔊 Escuchar</button>
+              <button aria-label="Escuchar pronunciación lenta" onClick={() => card && speak(card.de, true)} className="rounded-lg border border-stone-300 dark:border-neutral-700 px-4 py-2 text-sm hover:bg-stone-200 dark:hover:bg-neutral-800">🐢 Lento</button>
+            </div>
             <div className="mt-1 text-sm opacity-60">{card?.es}</div>
             {picked && picked !== card?.article && (
               <div className="mt-3 text-sm font-medium text-green-400">Era «{card?.article}» — se repite al final</div>

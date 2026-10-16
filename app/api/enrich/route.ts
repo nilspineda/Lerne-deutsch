@@ -32,7 +32,7 @@ async function wiktionary(word: string): Promise<{ ipa: string | null; article: 
 
 export async function GET(req: Request) {
   const word = new URL(req.url).searchParams.get('word')?.trim()
-  if (!word) return NextResponse.json({ error: 'word requerido' }, { status: 400 })
+  if (!word || word.length > 60) return NextResponse.json({ error: 'word requerido (máx 60)' }, { status: 400 })
   const [es, wk] = await Promise.all([translate(word), wiktionary(word)])
   return NextResponse.json({ es, ...wk })
 }

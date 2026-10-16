@@ -10,24 +10,33 @@ type Trend = { d: string; ok: number; tot: number }
 
 const box = 'rounded-2xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5'
 
+// día local (YYYY-MM-DD) para racha por zona horaria del usuario
+function toLocalDay(iso: string): string {
+  const d = new Date(iso)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
 export default function StatsPanel() {
   const sb = useMemo(() => supabase(), [])
   const [cards, setCards] = useState<{ mastered: number; total: number } | null>(null)
   const [quiz, setQuiz] = useState<{ ok: number; total: number; days: number } | null>(null)
   const [fails, setFails] = useState<Fail[]>([])
   const [trend, setTrend] = useState<Trend[]>([])
+  const [streak, setStreak] = useState<{ days: number; nreviews: number } | null>(null)
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(async () => {
     setLoading(true)
     const now = Date.now()
     const days30 = new Date(now - 30 * 864e5).toISOString()
-    const [c, q, f] = await Promise.all([
-      sb.from('user_cards').select('interval_days, track').eq('track', 'meaning'),
+    const [c, q, f, r] = await Promise.all([
+      sb.from('user_cards').select('interval_days').eq('track', 'meaning').not('interval_days', 'is', null),
       sb.from('quiz_log').select('correct, answered_at').gte('answered_at', days30),
       sb.from('quiz_log').select('word_id, correct, words(de, article, es)').eq('correct', false).order('answered_at', { ascending: false }).limit(200),
+      // racha: días con actividad (repasos de tarjetas o quiz) en los últimos 90 días
+      sb.from('review_log').select('reviewed_at').gte('reviewed_at', new Date(now - 90 * 864e5).toISOString()).limit(2000),
     ])
-    const list = (c.data ?? []) as { interval_days: number; track: string }[]
+    const list = (c.data ?? []) as { interval_days: number }[]
     setCards({ mastered: list.filter((x) => x.interval_days >= 21).length, total: list.length })
     const qL = (q.data ?? []) as { correct: boolean; answered_at: string }[]
     setQuiz({ ok: qL.filter((x) => x.correct).length, total: qL.length, days: 30 })
@@ -53,6 +62,22 @@ export default function StatsPanel() {
       if (t) { t.tot++; if (x.correct) t.ok++ }
     }
     setTrend([...byDay.entries()].map(([d, v]) => ({ d, ...v })))
+
+    // streak: días consecutivos con cualquier actividad repasada (por zona horaria local)
+    const rL = (r.data ?? []) as { reviewed_at: string }[]
+    const active = new Set<string>()
+    for (const x of rL) active.add(toLocalDay(x.reviewed_at))
+    for (const t of qL) active.add(toLocalDay(t.answered_at))
+    let days = 0
+    const todayStr = toLocalDay(new Date().toISOString())
+    for (let i = 0; ; i++) {
+      const d = toLocalDay(new Date(now - i * 864e5).toISOString())
+      if (active.has(d)) days++
+      else if (i > 0) break // la racha se corta si un día (ya no hoy) no fue activo
+      else if (!active.has(todayStr)) continue // hoy aún no estudias: la racha sigue contando desde ayer
+      if (i > 90) break
+    }
+    setStreak({ days, nreviews: rL.length })
     setLoading(false)
   }, [sb])
   useEffect(() => { load() }, [load])
@@ -103,7 +128,7 @@ export default function StatsPanel() {
               <b>{f.words?.article && <span className="mr-1 text-yellow-400">{f.words?.article}</span>}{f.words?.de}</b>
               <span className="ml-2 text-sm opacity-60">{f.words?.es}</span>
             </div>
-            <button onClick={() => f.words && speak(f.words.de)} className="opacity-60 hover:opacity-100">🔊</button>
+            <button aria-label="Escuchar palabra" onClick={() => f.words && speak(f.words.de)} className="opacity-60 hover:opacity-100">🔊</button>
             <Link href="/quiz" className="rounded border border-stone-300 dark:border-neutral-700 px-2 py-1 text-xs hover:bg-stone-200 dark:bg-neutral-800">Practicar</Link>
           </div>
         ))}

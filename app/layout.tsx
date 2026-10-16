@@ -20,23 +20,28 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <body className="flex min-h-screen flex-col bg-stone-50 text-stone-900 dark:bg-neutral-950 dark:text-stone-100">
         {user && (
           <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
-            <div className="mx-auto flex max-w-xl items-center gap-2 px-3 py-2.5 sm:gap-3 sm:px-4">
+            <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-3 py-2.5 sm:px-4">
               <Link href="/" className="shrink-0">
                 <span className="flex items-center gap-1.5 text-base sm:text-lg">
                   <Sparkles className="size-5 text-red-600" />
                   <b>LerneDeutsch</b>
                 </span>
               </Link>
-              <Navbar />
+              <Navbar variant="header" />
               <UserMenu name={nameOf(user)} email={user.email} />
             </div>
           </header>
         )}
         <main className="mx-auto max-w-xl p-4">{children}</main>
         {user && (
-          <footer className="mx-auto mt-auto w-full max-w-xl p-4 pb-10 text-center text-xs opacity-50">
+          <footer className="mx-auto mt-auto w-full max-w-xl p-4 pb-28 text-center text-xs opacity-50 md:pb-4">
             Diseñado por <a href="https://nilspineda.com/es/" className="underline">nilspineda</a>
           </footer>
+        )}
+        {user && (
+          <div className="w-full md:hidden">
+            <Navbar variant="bottom" />
+          </div>
         )}
       </body>
     </html>

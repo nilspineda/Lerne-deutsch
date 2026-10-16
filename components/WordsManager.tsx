@@ -14,12 +14,13 @@ export default function WordsManager() {
   const [topic, setTopic] = useState('')
   const [q, setQ] = useState('')
   const [msg, setMsg] = useState('')
+  const [confirmId, setConfirmId] = useState<string | null>(null)
   const [f, setF] = useState(empty)
   const [busy, setBusy] = useState(false)
 
   const load = useCallback(async () => {
     const [w, c] = await Promise.all([
-      sb.from('words').select('*').order('level').order('topic').order('created_at'),
+      sb.from('words').select('*').order('level').order('topic').order('created_at').limit(500),
       sb.from('user_cards').select('word_id').eq('track', 'meaning'),
     ])
     setWords((w.data ?? []) as Word[])
@@ -40,7 +41,13 @@ export default function WordsManager() {
     setMsg(error ? error.message : data === 0 ? 'No quedan palabras nuevas con ese filtro 🎉' : `Se agregaron ${data} palabras`)
     load()
   }
-  async function remove(id: string) { await sb.from('words').delete().eq('id', id); load() }
+  async function remove(id: string) {
+    if (confirmId !== id) { setConfirmId(id); return } // primer toque: armarse; segundo: borrar
+    setConfirmId(null)
+    const { error } = await sb.from('words').delete().eq('id', id)
+    if (error) setMsg(error.message)
+    load()
+  }
 
   async function enrich() {
     if (!f.de.trim()) return
@@ -94,9 +101,13 @@ export default function WordsManager() {
               <b>{w.article && <span className="mr-1 text-red-600">{w.article}</span>}{w.de}</b>
               <div className="truncate text-sm opacity-70">{w.es}{w.respell ? ` · «${w.respell}»` : ''}{w.ipa ? ` · /${w.ipa}/` : ''}</div>
             </div>
-            <button onClick={() => speak(full(w))}>🔊</button>
-            <button onClick={() => speak(full(w), true)}>🐢</button>
-            {w.owner && <button className="opacity-50" onClick={() => remove(w.id)}>✕</button>}
+            <button aria-label="Escuchar pronunciación" onClick={() => speak(full(w))}>🔊</button>
+            <button aria-label="Escuchar pronunciación lenta" onClick={() => speak(full(w), true)}>🐢</button>
+            {w.owner && (
+              <button aria-label={confirmId === w.id ? 'Confirmar borrado' : 'Borrar palabra'} className={`opacity-50 ${confirmId === w.id ? 'text-red-600 opacity-100' : ''}`} onClick={() => remove(w.id)}>
+                {confirmId === w.id ? '⚠' : '✕'}
+              </button>
+            )}
             {added.has(w.id) ? <span className="text-green-600">✓</span> :
               <button className="rounded border border-stone-300 px-2 py-1 text-sm dark:border-neutral-700" onClick={() => addOne(w.id)}>Agregar</button>}
           </div>
