@@ -46,7 +46,7 @@ export default function StatsPanel() {
       sb.from('quiz_log').select('correct, words(topic)').gte('answered_at', days30),
     ])
     const list = (c.data ?? []) as { interval_days: number }[]
-    setCards({ mastered: list.filter((x) => x.interval_days >= 21).length, total: list.length })
+    setCards({ mastered: list.filter((x) => x.interval_days >= 3).length, total: list.length })
     const qL = (q.data ?? []) as { correct: boolean; answered_at: string }[]
     setQuiz({ ok: qL.filter((x) => x.correct).length, total: qL.length, days: 30 })
     // agrupar fallos por palabra y conservar el más repetido
@@ -124,7 +124,7 @@ export default function StatsPanel() {
     <div className="space-y-5">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className={box}><div className="text-2xl font-bold">{cards?.total ?? 0}</div><div className="text-xs opacity-70">Palabras estudiando</div></div>
-        <div className={box}><div className="text-2xl font-bold text-green-400">{mastery ?? 0}%</div><div className="text-xs opacity-70">{cards?.mastered ?? 0} dominadas (21+ días)</div></div>
+        <div className={box}><div className="text-2xl font-bold text-green-400">{mastery ?? 0}%</div><div className="text-xs opacity-70">{cards?.mastered ?? 0} dominadas (3+ días)</div></div>
         <div className={box}><div className="text-2xl font-bold">{acc !== null ? acc + '%' : '—'}</div><div className="text-xs opacity-70">Precisión quiz 30 días</div></div>
         <div className={box}><div className="text-2xl font-bold">{fails.length}</div><div className="text-xs opacity-70">Palabras a repasar</div></div>
       </div>

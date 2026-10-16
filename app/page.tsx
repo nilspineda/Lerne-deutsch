@@ -48,7 +48,7 @@ export default async function Home() {
     const g = groups.get(`${x.words!.level}|${x.words!.topic}`)
     if (!g) continue
     g.added++
-    if (x.interval_days >= 21) g.mastered++
+    if (x.interval_days >= 3) g.mastered++
   }
   const list = [...groups.values()].sort((a, b) => a.level.localeCompare(b.level))
   const box = 'rounded-xl border border-stone-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900'
