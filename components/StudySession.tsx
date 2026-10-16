@@ -131,9 +131,25 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
     return () => window.removeEventListener('online', flush)
   }, [])
 
+  // distractores del MISMO tema que la palabra actual (negro vs. otros colores, no números)
+  const [topicDistractors, setTopicDistractors] = useState<string[]>([])
+  useEffect(() => {
+    if (!card || track !== 'meaning') { setTopicDistractors([]); return }
+    const topic = card.words?.topic
+    let q = sb.from('words').select('es').is('owner', null).neq('es', card.words.es)
+    if (topic) q = q.eq('topic', topic)
+    ;(async () => {
+      const { data } = await q.limit(30)
+      setTopicDistractors([...new Set((data ?? []).map((x: { es: string }) => x.es))])
+    })()
+  }, [sb, card?.word_id, track]) // eslint-disable-line
+
   const options = useMemo(() => {
     if (!w) return []
-    const pool = [...queue.slice(1).map((c) => c.words.es), ...extras].filter((es) => es && es !== w.es)
+    // 1º los del mismo tema; si aún no cargan, cae al pool global (extras) para no bloquear
+    const pool = [...(topicDistractors.length
+      ? topicDistractors
+      : [...queue.slice(1).map((c) => c.words.es), ...extras])].filter((es) => es && es !== w.es)
     const uniq = [...new Set(pool)]
     const picked: string[] = []
     while (picked.length < 3 && uniq.length) {
@@ -141,7 +157,7 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
       picked.push(uniq.splice(i, 1)[0])
     }
     return [w.es, ...picked].sort(() => Math.random() - 0.5)
-  }, [card?.word_id, queue.length, extras, track]) // eslint-disable-line
+  }, [card?.word_id, queue.length, topicDistractors, extras, track]) // eslint-disable-line
 
   function pick(es: string) {
     if (!w || shown) return
