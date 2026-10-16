@@ -7,14 +7,35 @@ import { speak, stopSpeak } from '@/lib/speak'
 import { full, topicLabel, type Card } from '@/lib/types'
 import { queueRating, flushPending } from '@/lib/offlineSrs'
 
-export default function StudySession({ track, level, topic }: { track: 'meaning' | 'pron'; level?: string; topic?: string }) {
+export default function StudySession({ track, level, topic, saved }: { track: 'meaning' | 'pron'; level?: string; topic?: string; saved?: boolean }) {
   const sb = useMemo(() => supabase(), [])
   const [queue, setQueue] = useState<Card[]>([])
   const [shown, setShown] = useState(false)
   const [loading, setLoading] = useState(true)
   const [done, setDone] = useState(0)
+  const [savedIds, setSavedIds] = useState<Set<string>>(new Set())
+
+  // palabras guardadas en una sesión (idempotente: si la palabra está en el catálogo, va por user_cards)
+  useEffect(() => {
+    if (!saved) return
+    ;(async () => {
+      setLoading(true)
+      const { data: sw } = await sb.from('saved_words').select('word_id').order('saved_at', { ascending: false }).limit(50)
+      const ids = (sw ?? []).map((x: { word_id: string }) => x.word_id)
+      if (ids.length) {
+        await sb.from('user_cards').upsert(ids.map((id) => ({ word_id: id, track })), { ignoreDuplicates: true })
+        const q3 = sb.from('user_cards').select('*, words!inner(*)').eq('track', track).in('word_id', ids)
+        const { data: cards } = await q3
+        setQueue((cards ?? []) as unknown as Card[])
+      } else {
+        setQueue([])
+      }
+      setDone(0); setShown(false); setLoading(false)
+    })()
+  }, [sb, track, saved])
 
   useEffect(() => {
+    if (saved) return
     ;(async () => {
       setLoading(true)
       let q = sb.from('user_cards').select('*, words!inner(*)').eq('track', track)
@@ -59,9 +80,10 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
         const { data: upcoming } = await q2
         if (upcoming?.length) data = upcoming
       }
-      setQueue((data ?? []) as unknown as Card[]); setDone(0); setShown(false); setLoading(false)
+      setQueue((data ?? []) as unknown as Card[])
+      setDone(0); setShown(false); setLoading(false)
     })()
-  }, [sb, track, level, topic])
+  }, [sb, track, level, topic, saved])
 
   const card = queue[0]
   const w = card?.words
@@ -71,6 +93,27 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
   useEffect(() => { setChoice(null); setWrong(null) }, [card?.word_id])
 
   useEffect(() => () => stopSpeak(), []) // corta el audio al desmontar (nav fuera de /study)
+
+  // lista de guardadas (para pintar la estrella)
+  useEffect(() => {
+    ;(async () => {
+      const { data: sw } = await sb.from('saved_words').select('word_id')
+      setSavedIds(new Set((sw ?? []).map((x: { word_id: string }) => x.word_id)))
+    })()
+  }, [sb, done])
+
+  async function toggleSave() {
+    if (!card) return
+    const id = card.word_id
+    if (savedIds.has(id)) {
+      setSavedIds((s) => { const n = new Set(s); n.delete(id); return n })
+      await sb.from('saved_words').delete().match({ word_id: id })
+    } else {
+      setSavedIds((s) => new Set(s).add(id))
+      const { error } = await sb.from('saved_words').insert({ word_id: id })
+      if (error) setSavedIds((s) => { const n = new Set(s); n.delete(id); return n })
+    }
+  }
 
   // sincroniza repases guardados sin conexión al abrir y al volver la red
   useEffect(() => {
@@ -184,6 +227,7 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
       <div className="flex gap-2">
         <Link href={qs('meaning')} className={tab('meaning', track === 'meaning')}>📖 Significado</Link>
         <Link href={qs('pron')} className={tab('pron', track === 'pron')}>🔊 Pronunciación</Link>
+        <Link href={`/study?saved=1`} className={tab('saved', !!saved)}>★ Guardadas</Link>
       </div>
       {topic && <p className="text-sm opacity-70">{topicLabel(topic)} {level} · <Link className="underline" href={`/topic?topic=${encodeURIComponent(topic)}&level=${encodeURIComponent(level ?? '')}`}>resumen del tema</Link></p>}
 
@@ -193,7 +237,13 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
         <>
           <div className="flex justify-between text-sm opacity-70"><span>Pendientes: {queue.length}</span><span>Hechas: {done}</span></div>
           {err && <p className="rounded-lg bg-red-950 px-3 py-2 text-center text-sm text-red-300">{err}</p>}
-          <div className={box}>
+          <div className="relative">
+            <button aria-label={savedIds.has(card.word_id) ? 'Quitar de guardadas' : 'Guardar para repasar después'}
+              onClick={toggleSave}
+              className={`absolute -top-1 right-0 z-10 text-xl ${savedIds.has(card.word_id) ? 'text-yellow-400' : 'text-stone-300 dark:text-neutral-600'}`}>
+              {savedIds.has(card.word_id) ? '★' : '☆'}
+            </button>
+            <div className={box}>
             {track === 'meaning' ? (
               <div className="text-4xl font-bold">{w.article && <span className="mr-2 text-red-600">{w.article}</span>}{w.de}</div>
             ) : (
@@ -238,6 +288,7 @@ export default function StudySession({ track, level, topic }: { track: 'meaning'
                 {w.example && <div className="pt-2 italic opacity-70">{w.example}</div>}
               </div>
             )}
+            </div>
           </div>
           {shown ? (
             <div className="grid grid-cols-4 gap-2">
