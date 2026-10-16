@@ -76,6 +76,11 @@ export default async function Home() {
           <div className="text-sm opacity-70">🔊 Pronunciación pendientes</div>
         </Link>
       </div>
+      <div className="text-center">
+        <Link href="/study?saved=1" className="inline-block rounded-lg border border-yellow-500/60 px-4 py-2 text-sm font-medium text-yellow-600 dark:text-yellow-400 dark:hover:bg-yellow-950/40">
+          ★ Repasar mis palabras guardadas
+        </Link>
+      </div>
       <p className="text-center text-sm">
         {streak > 0 ? <><span className="font-bold text-red-600">🔥 {streak}</span> <span className="opacity-70">día(s) de racha</span></> : <span className="opacity-60">🔥 Estudia hoy y empieza tu racha</span>}
       </p>
