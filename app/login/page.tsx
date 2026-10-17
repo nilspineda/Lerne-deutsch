@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
 import { LogIn, UserPlus } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import InstallHint from '@/components/InstallHint'
 
 export default function Login() {
   const r = useRouter()
@@ -32,6 +33,7 @@ export default function Login() {
 
   const input = 'w-full rounded-lg border border-stone-300 bg-white p-3 dark:border-neutral-700 dark:bg-neutral-900'
   return (
+    <>
     <form onSubmit={submit} className="mx-auto mt-16 max-w-sm space-y-3">
       <h1 className="text-2xl font-bold">🇩🇪 Deutsch Karten</h1>
       <p className="text-sm opacity-70">{mode === 'in' ? 'Inicia sesión para continuar tu progreso.' : 'Crea tu cuenta.'}</p>
@@ -69,5 +71,7 @@ export default function Login() {
       </button>
       {msg && <p className="text-sm text-red-600">{msg}</p>}
     </form>
+    <InstallHint />
+    </>
   )
 }
