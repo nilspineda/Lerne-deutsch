@@ -3,8 +3,16 @@
 ## Hecho (para desmarcar del orden mental)
 - ✅ Módulo de Gramática v1: `/grammar` con 12 mini-lecciones (A1.1/A1.2), teoría + cloze con SRS (`supabase/grammar.sql`).
 - ✅ Feedback más lento en errores del quiz/artículos y cloze.
+- ✅ Logo del navbar como SVG inline (`components/Logo.tsx`): sin recuadro blanco, texto que se adapta al tema y bandera con colores fijos.
+- ✅ Iconos PWA para iOS: `apple-touch-icon.png` 180 full-bleed, icon-192/512 sin transparencia, `sw v3` (refresca iconos cacheados).
+- ✅ Aviso de instalación en `/login` (`components/InstallHint.tsx`): Safari / Chrome Android / PC, resalta el caso del usuario y se oculta si ya está instalada.
+- ✅ Buscador `/search` (🔍 en navbar): traducción, artículo der/die/das, IPA + «a la española», ejemplos y verbos con conjugación en Präsens + cambio de raíz + nota.
+- ✅ SQL de verbos versionado: `supabase/verbos-praesens.sql` (columnas conj/verb_type/stem_change/verb_note + ~110 verbos).
 
 ## Lo PRIMERO mañana (bloqueante)
+- [ ] **Ejecutar `supabase/verbos-praesens.sql` en el SQL Editor** (si aún no): sin las columnas, /search no muestra conjugaciones ni notas de verbos.
+- [ ] **Lecciones de gramática de verbos en /grammar** (pedido quedó a medias): cambios e→i / e→ie / a→ä / au→äu, modales y verbos separables — teoría + cloze con el patrón de `grammar.sql`.
+- [ ] **Probar /search de punta a punta** (buscar de→es y es→de, pronunciar, tabla de verbos) **y refrescar el icono del iPhone** (borrar el del home y reañadir desde Safari; iOS cachea los iconos).
 - [ ] **Ejecutar `supabase/grammar.sql` en el SQL Editor** (crea grammar_rules/exercises/srs + las 12 lecciones). Sin esto /grammar queda vacío.
 - [ ] **Probar el flujo de gramática de punta a punta**: lección → teoría → práctica → fallo se reprograma → barra de progreso sube en /grammar.
 - [ ] **Pulir hints/textos de `grammar.sql`**: quedaron varias frases confusas o con español/ainglés mezclado (revisar cada `hint` y los `examples`).
@@ -22,7 +30,7 @@
 - [ ] **Admin del catálogo** — SQL para corregir typos en `es` sin tocar la tabla a mano cada vez.
 
 ## Calidad / técnica
-- [ ] **Bump de versión del SW (`V = 'lerne-v2'`)** en cada deploy con cambios frontend forzar refresh del shell PWA. Considerar el banner automático «Nueva versión → Recargar».
+- [ ] **Bump de versión del SW (`V = 'lerne-v3'`)** en cada deploy con cambios frontend forzar refresh del shell PWA. Considerar el banner automático «Nueva versión → Recargar».
 - [ ] **Linter real** (`eslint` + `eslint-config-next`): el build corre pero `cn` casi sin uso, imports sin limpiar, `articleQuiz.tsx.bak` borrado ya.
 - [ ] **Tarjetas con accesibilidad**: focus plegable visible, `aria-live` en la ejectación de calificación, tamaños táctiles ≥44px en calificaciones 1-4.
 - [ ] **Supabase**: auditar RLS en tablas nuevas (`saved_words` ya listo, verificar `add_random_words` como SECURITY DEFINER).
