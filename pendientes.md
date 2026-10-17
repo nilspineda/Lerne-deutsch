@@ -7,12 +7,13 @@
 - ✅ Iconos PWA para iOS: `apple-touch-icon.png` 180 full-bleed, icon-192/512 sin transparencia, `sw v3` (refresca iconos cacheados).
 - ✅ Aviso de instalación en `/login` (`components/InstallHint.tsx`): Safari / Chrome Android / PC, resalta el caso del usuario y se oculta si ya está instalada.
 - ✅ Buscador `/search` (🔍 en navbar): traducción, artículo der/die/das, IPA + «a la española», ejemplos y verbos con conjugación en Präsens + cambio de raíz + nota.
-- ✅ SQL de verbos versionado: `supabase/verbos-praesens.sql` (columnas conj/verb_type/stem_change/verb_note + ~110 verbos).
+- ✅ SQL de verbos versionado: `supabase/verbos-praesens.sql` (columnas conj/verb_type/stem_change/verb_note + ~110 verbos). **YA EJECUTADO en el SQL Editor.**
+- ✅ Lecciones de gramática de verbos creadas: `supabase/grammar-verbos.sql` — 5 lecciones (e→i, e→ie, a→ä/au→äu, modales, separables) + 31 ejercicios, sin tocar el progreso SRS. **YA EJECUTADO en el SQL Editor.**
+- ✅ Acceso al buscador en mobile: ícono 🔍 junto al logo en el header (además del ícono del navbar inferior).
 
-## Lo PRIMERO mañana (bloqueante)
-- [ ] **Ejecutar `supabase/verbos-praesens.sql` en el SQL Editor** (si aún no): sin las columnas, /search no muestra conjugaciones ni notas de verbos.
-- [ ] **Lecciones de gramática de verbos en /grammar** (pedido quedó a medias): cambios e→i / e→ie / a→ä / au→äu, modales y verbos separables — teoría + cloze con el patrón de `grammar.sql`.
-- [ ] **Probar /search de punta a punta** (buscar de→es y es→de, pronunciar, tabla de verbos) **y refrescar el icono del iPhone** (borrar el del home y reañadir desde Safari; iOS cachea los iconos).
+## Pendientes de usuario (no bloquean)
+- [ ] **Probar /search de punta a punta** (buscar de→es y es→de, pronunciar, tabla de conjugación de verbos).
+- [ ] **Refrescar el icono del iPhone** (borrar el del home y reañadir desde Safari; iOS cachea los iconos).
 - [ ] **Ejecutar `supabase/grammar.sql` en el SQL Editor** (crea grammar_rules/exercises/srs + las 12 lecciones). Sin esto /grammar queda vacío.
 - [ ] **Probar el flujo de gramática de punta a punta**: lección → teoría → práctica → fallo se reprograma → barra de progreso sube en /grammar.
 - [ ] **Pulir hints/textos de `grammar.sql`**: quedaron varias frases confusas o con español/ainglés mezclado (revisar cada `hint` y los `examples`).
@@ -46,3 +47,31 @@
 
 ## Descartado (no hacer)
 - ~~Estudiar contraste 21+ días~~ — ya está en 3+ días para dominada (ajustable en `page.tsx:51` y `StatsPanel.tsx:49`).
+
+
+## Añadir los meses del año
+• der Januar (enero)
+• der Februar (febrero)
+• der März (marzo)
+• der April (abril)
+• der Mai (mayo)
+• der Juni (junio)
+• der Juli (julio)
+• der August (agosto)
+• der September (septiembre)
+• der Oktober (octubre)
+• der November (noviembre)
+• der Dezember (diciembre)• der Januar (enero)
+• der Februar (febrero)
+• der März (marzo)
+• der April (abril)
+• der Mai (mayo)
+• der Juni (junio)
+• der Juli (julio)
+• der August (agosto)
+• der September (septiembre)
+• der Oktober (octubre)
+• der November (noviembre)
+• der Dezember (diciembre)
+
+Dias de la semana
