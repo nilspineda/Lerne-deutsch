@@ -6,6 +6,7 @@ import UserMenu from '@/components/UserMenu'
 import Navbar from '@/components/Navbar'
 import SwRegister from '@/components/SwRegister'
 import Logo from '@/components/Logo'
+import { Search } from 'lucide-react'
 
 export const metadata = {
   title: 'LerneDeutsch',
@@ -34,9 +35,15 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         {user && (
           <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
             <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:max-w-3xl">
-              <Link href="/" className="shrink-0">
-                <Logo className="h-7 w-auto" />
-              </Link>
+              <div className="flex shrink-0 items-center gap-1.5">
+                <Link href="/" className="shrink-0">
+                  <Logo className="h-7 w-auto" />
+                </Link>
+                <Link href="/search" aria-label="Buscar"
+                  className="rounded-lg p-1.5 text-stone-600 hover:bg-stone-200/70 md:hidden dark:text-neutral-400 dark:hover:bg-neutral-800">
+                  <Search className="size-5" />
+                </Link>
+              </div>
               <Navbar variant="header" />
               <UserMenu name={nameOf(user)} email={user.email} />
             </div>
