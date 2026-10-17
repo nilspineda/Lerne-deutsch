@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import UserMenu from '@/components/UserMenu'
 import Navbar from '@/components/Navbar'
 import SwRegister from '@/components/SwRegister'
+import Logo from '@/components/Logo'
 
 export const metadata = {
   title: 'LerneDeutsch',
@@ -34,7 +35,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
             <div className="mx-auto flex max-w-xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:max-w-3xl">
               <Link href="/" className="shrink-0">
-                <img src="/logo.svg" alt="LerneDeutsch" className="h-7 w-auto rounded-md bg-white px-1.5 py-1" />
+                <Logo className="h-7 w-auto" />
               </Link>
               <Navbar variant="header" />
               <UserMenu name={nameOf(user)} email={user.email} />
