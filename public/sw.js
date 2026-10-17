@@ -1,7 +1,7 @@
 // SW mínimo: shell offline (no-cache-first simple). Las rutas son dinámicas (Supabase), así que
 // solo cacheamos el shell y los estáticos; el contenido vive en la red.
-const V = 'lerne-v2'
-const SHELL = ['/', '/icon-192.png', '/icon-512.png', '/manifest.json']
+const V = 'lerne-v3'
+const SHELL = ['/', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/logo.svg', '/manifest.json']
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(V).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()))
