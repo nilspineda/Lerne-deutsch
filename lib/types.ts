@@ -2,7 +2,12 @@ export type Word = {
   id: string; owner: string | null; de: string; article: 'der' | 'die' | 'das' | null
   es: string; ipa: string | null; respell: string | null; example: string | null
   topic: string; level: string
+  conj?: string[] | null            // [ich, du, er/sie/es, wir, ihr, sie/Sie]
+  verb_type?: 'regular' | 'irregular' | null
+  stem_change?: string | null       // ej. 'e→i', 'a→ä', 'au→äu'
+  verb_note?: string | null
 }
+export const PRONOUNS = ['ich', 'du', 'er/sie/es', 'wir', 'ihr', 'sie/Sie']
 export type Card = {
   word_id: string; track: 'meaning' | 'pron'; due: string
   interval_days: number; ease: number; reps: number; lapses: number; words: Word

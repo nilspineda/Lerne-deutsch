@@ -1,11 +1,12 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { House, BookOpen, Layers, AudioLines, TrendingUp, Languages } from 'lucide-react'
+import { House, BookOpen, Layers, AudioLines, TrendingUp, Languages, Search } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const items = [
   { href: '/', label: 'Inicio', icon: House },
+  { href: '/search', label: 'Buscar', icon: Search },
   { href: '/study', label: 'Estudiar', icon: BookOpen },
   { href: '/grammar', label: 'Gram.', icon: Languages },
   { href: '/listen', label: 'Oído', icon: AudioLines },
