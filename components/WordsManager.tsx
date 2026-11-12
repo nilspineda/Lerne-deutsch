@@ -105,8 +105,8 @@ export default function WordsManager({ initialTopic, initialLevel }: { initialTo
               <b>{w.article && <span className="mr-1 text-red-600">{w.article}</span>}{w.de}</b>
               <div className="truncate text-sm opacity-70">{w.es}{w.respell ? ` · «${w.respell}»` : ''}{w.ipa ? ` · /${w.ipa}/` : ''}</div>
             </div>
-            <button aria-label="Escuchar pronunciación" onClick={() => speak(full(w))}>🔊</button>
-            <button aria-label="Escuchar pronunciación lenta" onClick={() => speak(full(w), true)}>🐢</button>
+            <button aria-label="Escuchar pronunciación" onClick={() => w.audio_url ? speak(w.de, false, w.audio_url) : speak(full(w))}>🔊</button>
+            <button aria-label="Escuchar pronunciación lenta" onClick={() => w.audio_url ? speak(w.de, true, w.audio_url) : speak(full(w), true)}>🐢</button>
             {w.owner && (
               <button aria-label={confirmId === w.id ? 'Confirmar borrado' : 'Borrar palabra'} className={`opacity-50 ${confirmId === w.id ? 'text-red-600 opacity-100' : ''}`} onClick={() => remove(w.id)}>
                 {confirmId === w.id ? '⚠' : '✕'}

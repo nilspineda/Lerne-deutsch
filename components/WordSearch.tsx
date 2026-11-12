@@ -72,8 +72,8 @@ export default function WordSearch() {
               <div key={w.id} className={box}>
                 <div className="flex items-start gap-2">
                   <div className="flex shrink-0 flex-col gap-1 pt-0.5">
-                    <button aria-label="Escuchar" onClick={() => speak(full(w))} className="text-base">🔊</button>
-                    <button aria-label="Escuchar lento" onClick={() => speak(full(w), true)} className="text-base">🐢</button>
+                    <button aria-label="Escuchar" onClick={() => w.audio_url ? speak(w.de, false, w.audio_url) : speak(full(w))} className="text-base">🔊</button>
+                    <button aria-label="Escuchar lento" onClick={() => w.audio_url ? speak(w.de, true, w.audio_url) : speak(full(w), true)} className="text-base">🐢</button>
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-x-2 gap-y-1">

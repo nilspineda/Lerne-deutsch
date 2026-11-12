@@ -1,0 +1,125 @@
+{
+  "meta": {
+    "batch": "ejemplo-2026-01",
+    "level": "A1.2",
+    "source": "ejemplo",
+    "notes": "Plantilla de referencia. Cópiala, pide el contenido a la IA y súbelo con scripts/upload-content.mjs"
+  },
+  "words": [
+    {
+      "de": "Apfel",
+      "article": "der",
+      "es": "manzana",
+      "ipa": "ˈapfl̩",
+      "respell": "ap-fel",
+      "example": "Ich kaufe einen Apfel.",
+      "topic": "frutas",
+      "category": "fruta",
+      "unit": "Stück",
+      "price_eur": 1.2,
+      "level": "A1.1",
+      "audio": "words/apfel.mp3"
+    },
+    {
+      "de": "Karotte",
+      "article": "die",
+      "es": "zanahoria",
+      "ipa": "kaˈʁɔtə",
+      "respell": "ka-ro-te",
+      "example": "Die Karotte ist sehr billig.",
+      "topic": "verduras",
+      "category": "verdura",
+      "unit": "kg",
+      "price_eur": 0.9,
+      "level": "A1.1",
+      "audio": "words/karotte.mp3"
+    },
+    {
+      "de": "Milch",
+      "article": "die",
+      "es": "leche",
+      "ipa": "mɪlç",
+      "respell": "milj",
+      "example": "Ich trinke jeden Morgen Milch.",
+      "topic": "supermercado",
+      "category": "lacteo",
+      "unit": "l",
+      "price_eur": 1.15,
+      "level": "A1.1",
+      "audio": "words/milch.mp3"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 21,
+      "de": "einundzwanzig",
+      "es": "veintiuno (21)",
+      "category": "cardinal",
+      "ipa": "aɪ̯nʊntˈtsvaːntyɪç",
+      "respell": "ein-unt-tsvan-tsig",
+      "example": "ein + und + zwanzig",
+      "level": "A1.2",
+      "audio": "numbers/einundzwanzig.mp3"
+    },
+    {
+      "value": 3,
+      "de": "dritte",
+      "es": "tercero (3º)",
+      "category": "ordinal",
+      "ipa": "ˈdʁɪtə",
+      "respell": "dri-te",
+      "example": "Der dritte Stock.",
+      "level": "A1.2",
+      "audio": "numbers/dritte.mp3"
+    },
+    {
+      "value": 2.5,
+      "de": "zwei Komma fünf",
+      "es": "dos coma cinco (2,5)",
+      "category": "decimal",
+      "ipa": "tsvaɪ̯ ˈkɔma fʏnf",
+      "respell": "tsvai ko-ma funf",
+      "example": "zwei Komma fünf Euro, bitte.",
+      "level": "A2.1",
+      "audio": "numbers/zwei_komma_fuenf.mp3"
+    }
+  ],
+  "units": [
+    {
+      "de": "Kilogramm",
+      "es": "kilogramo",
+      "symbol": "kg",
+      "dimension": "peso",
+      "plural_de": "die Kilogramme",
+      "ipa": "ˈkiːlɔɡʁam",
+      "respell": "ki-lo-gram",
+      "example": "Ein Kilogramm Äpfel, bitte.",
+      "level": "A1.1",
+      "audio": "units/kilogramm.mp3"
+    },
+    {
+      "de": "Liter",
+      "es": "litro",
+      "symbol": "l",
+      "dimension": "volumen",
+      "plural_de": "die Liter",
+      "ipa": "ˈliːtɐ",
+      "respell": "li-ter",
+      "example": "Ein Liter Milch, bitte.",
+      "level": "A1.1",
+      "audio": "units/liter.mp3"
+    },
+    {
+      "de": "Stück",
+      "es": "pieza",
+      "symbol": "St.",
+      "dimension": "cantidad",
+      "plural_de": "die Stücke",
+      "ipa": "ʃtʏk",
+      "respell": "shtuk",
+      "example": "Drei Stück Kuchen, bitte.",
+      "level": "A1.1",
+      "audio": "units/stueck.mp3"
+    }
+  ]
+}

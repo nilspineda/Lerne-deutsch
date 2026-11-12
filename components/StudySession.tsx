@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase/client'
 import { next, preview, type Rating } from '@/lib/srs'
 import { speak, stopSpeak } from '@/lib/speak'
-import { full, topicLabel, type Card } from '@/lib/types'
+import { full, topicLabel, type Card, type Word } from '@/lib/types'
 import { queueRating, flushPending } from '@/lib/offlineSrs'
 
 export default function StudySession({ track, level, topic, saved }: { track: 'meaning' | 'pron'; level?: string; topic?: string; saved?: boolean }) {
@@ -102,6 +102,10 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
 
   useEffect(() => () => stopSpeak(), []) // corta el audio al desmontar (nav fuera de /study)
 
+  // audio propio del catálogo (bucket "audio") con fallback al TTS de /api/tts
+  const say = (wd: Word, slow = false) =>
+    wd?.audio_url ? speak(wd.de, slow, wd.audio_url) : speak(full(wd), slow)
+
   // lista de guardadas (para pintar la estrella)
   useEffect(() => {
     ;(async () => {
@@ -164,11 +168,11 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
     if (es === w.es) { setChoice(es); setShown(true) }
     else {
       setWrong(es); setChoice(null)
-      if (track === 'pron') speak(full(w), true) // reescucha lenta al fallar
+      if (track === 'pron') say(w, true) // reescucha lenta al fallar
     }
   }
 
-  useEffect(() => { if (card) speak(full(card.words)) }, [card?.word_id, track]) // eslint-disable-line
+  useEffect(() => { if (card) say(card.words) }, [card?.word_id, track]) // eslint-disable-line
 
   const [err, setErr] = useState('')
   async function rate(q: Rating) {
@@ -211,7 +215,7 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
     setShown(false)
   }
 
-  function reveal() { setShown(true); if (track === 'meaning' && card) speak(full(card.words)) }
+  function reveal() { setShown(true); if (track === 'meaning' && card) say(card.words) }
 
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
@@ -276,8 +280,8 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
             {options.length >= 2 ? (
               <>
                 <div className="mt-4 flex justify-center gap-2">
-                  <button onClick={() => speak(full(w))} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🔊 Escuchar</button>
-                  <button onClick={() => speak(full(w), true)} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🐢 Lento</button>
+                  <button onClick={() => say(w)} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🔊 Escuchar</button>
+                  <button onClick={() => say(w, true)} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🐢 Lento</button>
                 </div>
                 <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {options.map((es) => {
@@ -299,8 +303,8 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
               </>
             ) : (
               <div className="mt-4 flex justify-center gap-2">
-                <button onClick={() => speak(full(w))} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🔊 Escuchar</button>
-                <button onClick={() => speak(full(w), true)} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🐢 Lento</button>
+                <button onClick={() => say(w)} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🔊 Escuchar</button>
+                <button onClick={() => say(w, true)} className="rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">🐢 Lento</button>
               </div>
             )}
             {shown && (

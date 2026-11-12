@@ -1,6 +1,7 @@
 # Pendientes · Lerne Deutsch
 
 ## Hecho (para desmarcar del orden mental)
+- ✅ Pantalla `/numbers` (`components/NumbersSession.tsx`): dos pistas con SRS propio (`number_cards`): 🎧 oír → escribir la cifra y 🔢 cifra → elegir la palabra. Filtros por categoría (cardinal/ordinal/decimal), auto-play del audio y distractores por valor cercano.
 - ✅ Módulo de Gramática v1: `/grammar` con 12 mini-lecciones (A1.1/A1.2), teoría + cloze con SRS (`supabase/grammar.sql`).
 - ✅ Feedback más lento en errores del quiz/artículos y cloze.
 - ✅ Logo del navbar como SVG inline (`components/Logo.tsx`): sin recuadro blanco, texto que se adapta al tema y bandera con colores fijos.
@@ -12,6 +13,10 @@
 - ✅ Acceso al buscador en mobile: ícono 🔍 junto al logo en el header (además del ícono del navbar inferior).
 
 ## Pendientes de usuario (no bloquean)
+- [ ] **Ejecutar `supabase/2026-001-contenido-audio.sql`** (crea `numbers`, `units`, bucket `audio`, `words.audio_url`). Sin esto no hay audio propio ni tabla de números.
+- [ ] **Crear `SUPABASE_SERVICE_ROLE_KEY`** en `.env` (Settings → API Keys → service_role) para poder subir contenido con `npm run content:upload`.
+- [ ] **Pegar el prompt de `docs/CONTENT-MANIFEST.md`** a la IA y subir el JSON resultante (`content/manifiesto.json`).
+- [ ] **UI de unidades**: pantalla de estudio con la tabla `units` (kilo, gramo, litro…), reutilizando el patrón de `/numbers`.
 - [ ] **Probar /search de punta a punta** (buscar de→es y es→de, pronunciar, tabla de conjugación de verbos).
 - [ ] **Refrescar el icono del iPhone** (borrar el del home y reañadir desde Safari; iOS cachea los iconos).
 - [ ] **Ejecutar `supabase/grammar.sql` en el SQL Editor** (crea grammar_rules/exercises/srs + las 12 lecciones). Sin esto /grammar queda vacío.

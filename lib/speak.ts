@@ -27,14 +27,16 @@ async function play(url: string, text: string, slow: boolean) {
   a.play().catch(() => localSpeak(text, slow))
 }
 
-export function speak(text: string, slow = false) {
+export function speak(text: string, slow = false, audioUrl?: string | null) {
   if (typeof window === 'undefined') return
-  const key = text.slice(0, 80) + '|' + (slow ? 'l' : 'n')
+  const key = text.slice(0, 80) + '|' + (slow ? 'l' : 'n') + '|' + (audioUrl ?? '')
   const now = Date.now()
   if (key === lastKey && now - lastAt < 1200) return
   lastKey = key; lastAt = now
   const w = text.replace(/\n/g, ' ').slice(0, 200)
   try {
+    // Audio propio (bucket "audio" de Supabase) → prioridad absoluta
+    if (audioUrl) { play(audioUrl, text, slow); return }
     const cached = cache.get(key)
     if (cached) { play(cached, text, slow); return }
     const url = `/api/tts?word=${encodeURIComponent(w)}${slow ? '&slow=1' : ''}`

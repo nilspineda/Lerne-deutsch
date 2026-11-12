@@ -1,0 +1,1452 @@
+{
+ "meta": {
+  "batch": "numeros-2026-11",
+  "level": "A1.2",
+  "source": "IA / manual",
+  "notes": "cardinales 0-100 y centenas 200-1000, ordinales 1-30, decimales"
+ },
+ "words": [],
+ "numbers": [
+  {
+   "value": 0,
+   "de": "null",
+   "es": "cero",
+   "category": "cardinal",
+   "ipa": "nʊl",
+   "respell": "nul",
+   "example": "Es hat null Grad.",
+   "audio": "numbers/null.mp3"
+  },
+  {
+   "value": 1,
+   "de": "eins",
+   "es": "uno",
+   "category": "cardinal",
+   "ipa": "aɪ̯ns",
+   "respell": "ains",
+   "example": "Ich habe einen Euro.",
+   "audio": "numbers/eins.mp3"
+  },
+  {
+   "value": 2,
+   "de": "zwei",
+   "es": "dos",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯",
+   "respell": "tsvai",
+   "example": "Das kostet zwei Euro.",
+   "audio": "numbers/zwei.mp3"
+  },
+  {
+   "value": 3,
+   "de": "drei",
+   "es": "tres",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯",
+   "respell": "drai",
+   "example": "Das kostet drei Euro.",
+   "audio": "numbers/drei.mp3"
+  },
+  {
+   "value": 4,
+   "de": "vier",
+   "es": "cuatro",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯",
+   "respell": "fir",
+   "example": "Das kostet vier Euro.",
+   "audio": "numbers/vier.mp3"
+  },
+  {
+   "value": 5,
+   "de": "fünf",
+   "es": "cinco",
+   "category": "cardinal",
+   "ipa": "fʏnf",
+   "respell": "fünf",
+   "example": "Das kostet fünf Euro.",
+   "audio": "numbers/funf.mp3"
+  },
+  {
+   "value": 6,
+   "de": "sechs",
+   "es": "seis",
+   "category": "cardinal",
+   "ipa": "zɛks",
+   "respell": "zeks",
+   "example": "Das kostet sechs Euro.",
+   "audio": "numbers/sechs.mp3"
+  },
+  {
+   "value": 7,
+   "de": "sieben",
+   "es": "siete",
+   "category": "cardinal",
+   "ipa": "ˈziːbn̩",
+   "respell": "si-ben",
+   "example": "Das kostet sieben Euro.",
+   "audio": "numbers/sieben.mp3"
+  },
+  {
+   "value": 8,
+   "de": "acht",
+   "es": "ocho",
+   "category": "cardinal",
+   "ipa": "axt",
+   "respell": "ajt",
+   "example": "Das kostet acht Euro.",
+   "audio": "numbers/acht.mp3"
+  },
+  {
+   "value": 9,
+   "de": "neun",
+   "es": "nueve",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯n",
+   "respell": "noin",
+   "example": "Das kostet neun Euro.",
+   "audio": "numbers/neun.mp3"
+  },
+  {
+   "value": 10,
+   "de": "zehn",
+   "es": "diez",
+   "category": "cardinal",
+   "ipa": "tseːn",
+   "respell": "tsen",
+   "example": "Das kostet zehn Euro.",
+   "audio": "numbers/zehn.mp3"
+  },
+  {
+   "value": 11,
+   "de": "elf",
+   "es": "once (11)",
+   "category": "cardinal",
+   "ipa": "ɛlf",
+   "respell": "elf",
+   "example": "Das kostet elf Euro.",
+   "audio": "numbers/elf.mp3"
+  },
+  {
+   "value": 12,
+   "de": "zwölf",
+   "es": "doce (12)",
+   "category": "cardinal",
+   "ipa": "tsvœlf",
+   "respell": "tsvölf",
+   "example": "Das kostet zwölf Euro.",
+   "audio": "numbers/zwolf.mp3"
+  },
+  {
+   "value": 13,
+   "de": "dreizehn",
+   "es": "trece (13)",
+   "category": "cardinal",
+   "ipa": "ˈdʁaɪ̯tseːn",
+   "respell": "drai-tsen",
+   "example": "Das kostet dreizehn Euro.",
+   "audio": "numbers/dreizehn.mp3"
+  },
+  {
+   "value": 14,
+   "de": "vierzehn",
+   "es": "catorce (14)",
+   "category": "cardinal",
+   "ipa": "ˈfɪʁtseːn",
+   "respell": "fir-tsen",
+   "example": "Das kostet vierzehn Euro.",
+   "audio": "numbers/vierzehn.mp3"
+  },
+  {
+   "value": 15,
+   "de": "fünfzehn",
+   "es": "quince (15)",
+   "category": "cardinal",
+   "ipa": "ˈfʏnftseːn",
+   "respell": "fünf-tsen",
+   "example": "Das kostet fünfzehn Euro.",
+   "audio": "numbers/funfzehn.mp3"
+  },
+  {
+   "value": 16,
+   "de": "sechzehn",
+   "es": "dieciséis (16)",
+   "category": "cardinal",
+   "ipa": "ˈzɛçtseːn",
+   "respell": "zech-tsen",
+   "example": "Das kostet sechzehn Euro.",
+   "audio": "numbers/sechzehn.mp3"
+  },
+  {
+   "value": 17,
+   "de": "siebzehn",
+   "es": "diecisiete (17)",
+   "category": "cardinal",
+   "ipa": "ˈziːptseːn",
+   "respell": "sip-tsen",
+   "example": "Das kostet siebzehn Euro.",
+   "audio": "numbers/siebzehn.mp3"
+  },
+  {
+   "value": 18,
+   "de": "achtzehn",
+   "es": "dieciocho (18)",
+   "category": "cardinal",
+   "ipa": "ˈaxtseːn",
+   "respell": "ajt-tsen",
+   "example": "Das kostet achtzehn Euro.",
+   "audio": "numbers/achtzehn.mp3"
+  },
+  {
+   "value": 19,
+   "de": "neunzehn",
+   "es": "diecinueve (19)",
+   "category": "cardinal",
+   "ipa": "ˈnɔɪ̯ntseːn",
+   "respell": "noin-tsen",
+   "example": "Das kostet neunzehn Euro.",
+   "audio": "numbers/neunzehn.mp3"
+  },
+  {
+   "value": 20,
+   "de": "zwanzig",
+   "es": "veinte (20)",
+   "category": "cardinal",
+   "ipa": "ˈtsvantsɪç",
+   "respell": "tsvan-tsig",
+   "example": "Das kostet zwanzig Euro.",
+   "audio": "numbers/zwanzig.mp3"
+  },
+  {
+   "value": 21,
+   "de": "einundzwanzig",
+   "es": "veintiuno (21)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈtsvantsɪç",
+   "respell": "ain-unt-tsvan-tsig",
+   "example": "ein + und + zwanzig",
+   "audio": "numbers/einundzwanzig.mp3"
+  },
+  {
+   "value": 22,
+   "de": "zweiundzwanzig",
+   "es": "veintidós (22)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈtsvantsɪç",
+   "respell": "tsvai-unt-tsvan-tsig",
+   "example": "zwei + und + zwanzig",
+   "audio": "numbers/zweiundzwanzig.mp3"
+  },
+  {
+   "value": 23,
+   "de": "dreiundzwanzig",
+   "es": "veintitrés (23)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈtsvantsɪç",
+   "respell": "drai-unt-tsvan-tsig",
+   "example": "drei + und + zwanzig",
+   "audio": "numbers/dreiundzwanzig.mp3"
+  },
+  {
+   "value": 24,
+   "de": "vierundzwanzig",
+   "es": "veinticuatro (24)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈtsvantsɪç",
+   "respell": "fir-unt-tsvan-tsig",
+   "example": "vier + und + zwanzig",
+   "audio": "numbers/vierundzwanzig.mp3"
+  },
+  {
+   "value": 25,
+   "de": "fünfundzwanzig",
+   "es": "veinticinco (25)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈtsvantsɪç",
+   "respell": "fünf-unt-tsvan-tsig",
+   "example": "fünf + und + zwanzig",
+   "audio": "numbers/funfundzwanzig.mp3"
+  },
+  {
+   "value": 26,
+   "de": "sechsundzwanzig",
+   "es": "veintiséis (26)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈtsvantsɪç",
+   "respell": "zeks-unt-tsvan-tsig",
+   "example": "sechs + und + zwanzig",
+   "audio": "numbers/sechsundzwanzig.mp3"
+  },
+  {
+   "value": 27,
+   "de": "siebenundzwanzig",
+   "es": "veintisiete (27)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈtsvantsɪç",
+   "respell": "si-ben-unt-tsvan-tsig",
+   "example": "sieben + und + zwanzig",
+   "audio": "numbers/siebenundzwanzig.mp3"
+  },
+  {
+   "value": 28,
+   "de": "achtundzwanzig",
+   "es": "veintiocho (28)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈtsvantsɪç",
+   "respell": "ajt-unt-tsvan-tsig",
+   "example": "acht + und + zwanzig",
+   "audio": "numbers/achtundzwanzig.mp3"
+  },
+  {
+   "value": 29,
+   "de": "neunundzwanzig",
+   "es": "veintinueve (29)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈtsvantsɪç",
+   "respell": "noin-unt-tsvan-tsig",
+   "example": "neun + und + zwanzig",
+   "audio": "numbers/neunundzwanzig.mp3"
+  },
+  {
+   "value": 30,
+   "de": "dreißig",
+   "es": "treinta (30)",
+   "category": "cardinal",
+   "ipa": "ˈdʁaɪ̯sɪç",
+   "respell": "drai-sig",
+   "example": "Das kostet dreißig Euro.",
+   "audio": "numbers/dreissig.mp3"
+  },
+  {
+   "value": 31,
+   "de": "einunddreißig",
+   "es": "treinta y uno (31)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈdʁaɪ̯sɪç",
+   "respell": "ain-unt-drai-sig",
+   "example": "ein + und + dreißig",
+   "audio": "numbers/einunddreissig.mp3"
+  },
+  {
+   "value": 32,
+   "de": "zweiunddreißig",
+   "es": "treinta y dos (32)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈdʁaɪ̯sɪç",
+   "respell": "tsvai-unt-drai-sig",
+   "example": "zwei + und + dreißig",
+   "audio": "numbers/zweiunddreissig.mp3"
+  },
+  {
+   "value": 33,
+   "de": "dreiunddreißig",
+   "es": "treinta y tres (33)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈdʁaɪ̯sɪç",
+   "respell": "drai-unt-drai-sig",
+   "example": "drei + und + dreißig",
+   "audio": "numbers/dreiunddreissig.mp3"
+  },
+  {
+   "value": 34,
+   "de": "vierunddreißig",
+   "es": "treinta y cuatro (34)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈdʁaɪ̯sɪç",
+   "respell": "fir-unt-drai-sig",
+   "example": "vier + und + dreißig",
+   "audio": "numbers/vierunddreissig.mp3"
+  },
+  {
+   "value": 35,
+   "de": "fünfunddreißig",
+   "es": "treinta y cinco (35)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈdʁaɪ̯sɪç",
+   "respell": "fünf-unt-drai-sig",
+   "example": "fünf + und + dreißig",
+   "audio": "numbers/funfunddreissig.mp3"
+  },
+  {
+   "value": 36,
+   "de": "sechsunddreißig",
+   "es": "treinta y seis (36)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈdʁaɪ̯sɪç",
+   "respell": "zeks-unt-drai-sig",
+   "example": "sechs + und + dreißig",
+   "audio": "numbers/sechsunddreissig.mp3"
+  },
+  {
+   "value": 37,
+   "de": "siebenunddreißig",
+   "es": "treinta y siete (37)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈdʁaɪ̯sɪç",
+   "respell": "si-ben-unt-drai-sig",
+   "example": "sieben + und + dreißig",
+   "audio": "numbers/siebenunddreissig.mp3"
+  },
+  {
+   "value": 38,
+   "de": "achtunddreißig",
+   "es": "treinta y ocho (38)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈdʁaɪ̯sɪç",
+   "respell": "ajt-unt-drai-sig",
+   "example": "acht + und + dreißig",
+   "audio": "numbers/achtunddreissig.mp3"
+  },
+  {
+   "value": 39,
+   "de": "neununddreißig",
+   "es": "treinta y nueve (39)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈdʁaɪ̯sɪç",
+   "respell": "noin-unt-drai-sig",
+   "example": "neun + und + dreißig",
+   "audio": "numbers/neununddreissig.mp3"
+  },
+  {
+   "value": 40,
+   "de": "vierzig",
+   "es": "cuarenta (40)",
+   "category": "cardinal",
+   "ipa": "ˈfɪʁtsɪç",
+   "respell": "fir-tsig",
+   "example": "Das kostet vierzig Euro.",
+   "audio": "numbers/vierzig.mp3"
+  },
+  {
+   "value": 41,
+   "de": "einundvierzig",
+   "es": "cuarenta y uno (41)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈfɪʁtsɪç",
+   "respell": "ain-unt-fir-tsig",
+   "example": "ein + und + vierzig",
+   "audio": "numbers/einundvierzig.mp3"
+  },
+  {
+   "value": 42,
+   "de": "zweiundvierzig",
+   "es": "cuarenta y dos (42)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈfɪʁtsɪç",
+   "respell": "tsvai-unt-fir-tsig",
+   "example": "zwei + und + vierzig",
+   "audio": "numbers/zweiundvierzig.mp3"
+  },
+  {
+   "value": 43,
+   "de": "dreiundvierzig",
+   "es": "cuarenta y tres (43)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈfɪʁtsɪç",
+   "respell": "drai-unt-fir-tsig",
+   "example": "drei + und + vierzig",
+   "audio": "numbers/dreiundvierzig.mp3"
+  },
+  {
+   "value": 44,
+   "de": "vierundvierzig",
+   "es": "cuarenta y cuatro (44)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈfɪʁtsɪç",
+   "respell": "fir-unt-fir-tsig",
+   "example": "vier + und + vierzig",
+   "audio": "numbers/vierundvierzig.mp3"
+  },
+  {
+   "value": 45,
+   "de": "fünfundvierzig",
+   "es": "cuarenta y cinco (45)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈfɪʁtsɪç",
+   "respell": "fünf-unt-fir-tsig",
+   "example": "fünf + und + vierzig",
+   "audio": "numbers/funfundvierzig.mp3"
+  },
+  {
+   "value": 46,
+   "de": "sechsundvierzig",
+   "es": "cuarenta y seis (46)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈfɪʁtsɪç",
+   "respell": "zeks-unt-fir-tsig",
+   "example": "sechs + und + vierzig",
+   "audio": "numbers/sechsundvierzig.mp3"
+  },
+  {
+   "value": 47,
+   "de": "siebenundvierzig",
+   "es": "cuarenta y siete (47)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈfɪʁtsɪç",
+   "respell": "si-ben-unt-fir-tsig",
+   "example": "sieben + und + vierzig",
+   "audio": "numbers/siebenundvierzig.mp3"
+  },
+  {
+   "value": 48,
+   "de": "achtundvierzig",
+   "es": "cuarenta y ocho (48)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈfɪʁtsɪç",
+   "respell": "ajt-unt-fir-tsig",
+   "example": "acht + und + vierzig",
+   "audio": "numbers/achtundvierzig.mp3"
+  },
+  {
+   "value": 49,
+   "de": "neunundvierzig",
+   "es": "cuarenta y nueve (49)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈfɪʁtsɪç",
+   "respell": "noin-unt-fir-tsig",
+   "example": "neun + und + vierzig",
+   "audio": "numbers/neunundvierzig.mp3"
+  },
+  {
+   "value": 50,
+   "de": "fünfzig",
+   "es": "cincuenta (50)",
+   "category": "cardinal",
+   "ipa": "ˈfʏnftsɪç",
+   "respell": "fünf-tsig",
+   "example": "Das kostet fünfzig Euro.",
+   "audio": "numbers/funfzig.mp3"
+  },
+  {
+   "value": 51,
+   "de": "einundfünfzig",
+   "es": "cincuenta y uno (51)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈfʏnftsɪç",
+   "respell": "ain-unt-fünf-tsig",
+   "example": "ein + und + fünfzig",
+   "audio": "numbers/einundfunfzig.mp3"
+  },
+  {
+   "value": 52,
+   "de": "zweiundfünfzig",
+   "es": "cincuenta y dos (52)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈfʏnftsɪç",
+   "respell": "tsvai-unt-fünf-tsig",
+   "example": "zwei + und + fünfzig",
+   "audio": "numbers/zweiundfunfzig.mp3"
+  },
+  {
+   "value": 53,
+   "de": "dreiundfünfzig",
+   "es": "cincuenta y tres (53)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈfʏnftsɪç",
+   "respell": "drai-unt-fünf-tsig",
+   "example": "drei + und + fünfzig",
+   "audio": "numbers/dreiundfunfzig.mp3"
+  },
+  {
+   "value": 54,
+   "de": "vierundfünfzig",
+   "es": "cincuenta y cuatro (54)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈfʏnftsɪç",
+   "respell": "fir-unt-fünf-tsig",
+   "example": "vier + und + fünfzig",
+   "audio": "numbers/vierundfunfzig.mp3"
+  },
+  {
+   "value": 55,
+   "de": "fünfundfünfzig",
+   "es": "cincuenta y cinco (55)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈfʏnftsɪç",
+   "respell": "fünf-unt-fünf-tsig",
+   "example": "fünf + und + fünfzig",
+   "audio": "numbers/funfundfunfzig.mp3"
+  },
+  {
+   "value": 56,
+   "de": "sechsundfünfzig",
+   "es": "cincuenta y seis (56)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈfʏnftsɪç",
+   "respell": "zeks-unt-fünf-tsig",
+   "example": "sechs + und + fünfzig",
+   "audio": "numbers/sechsundfunfzig.mp3"
+  },
+  {
+   "value": 57,
+   "de": "siebenundfünfzig",
+   "es": "cincuenta y siete (57)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈfʏnftsɪç",
+   "respell": "si-ben-unt-fünf-tsig",
+   "example": "sieben + und + fünfzig",
+   "audio": "numbers/siebenundfunfzig.mp3"
+  },
+  {
+   "value": 58,
+   "de": "achtundfünfzig",
+   "es": "cincuenta y ocho (58)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈfʏnftsɪç",
+   "respell": "ajt-unt-fünf-tsig",
+   "example": "acht + und + fünfzig",
+   "audio": "numbers/achtundfunfzig.mp3"
+  },
+  {
+   "value": 59,
+   "de": "neunundfünfzig",
+   "es": "cincuenta y nueve (59)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈfʏnftsɪç",
+   "respell": "noin-unt-fünf-tsig",
+   "example": "neun + und + fünfzig",
+   "audio": "numbers/neunundfunfzig.mp3"
+  },
+  {
+   "value": 60,
+   "de": "sechzig",
+   "es": "sesenta (60)",
+   "category": "cardinal",
+   "ipa": "ˈzɛçtsɪç",
+   "respell": "zech-tsig",
+   "example": "Das kostet sechzig Euro.",
+   "audio": "numbers/sechzig.mp3"
+  },
+  {
+   "value": 61,
+   "de": "einundsechzig",
+   "es": "sesenta y uno (61)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈzɛçtsɪç",
+   "respell": "ain-unt-zech-tsig",
+   "example": "ein + und + sechzig",
+   "audio": "numbers/einundsechzig.mp3"
+  },
+  {
+   "value": 62,
+   "de": "zweiundsechzig",
+   "es": "sesenta y dos (62)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈzɛçtsɪç",
+   "respell": "tsvai-unt-zech-tsig",
+   "example": "zwei + und + sechzig",
+   "audio": "numbers/zweiundsechzig.mp3"
+  },
+  {
+   "value": 63,
+   "de": "dreiundsechzig",
+   "es": "sesenta y tres (63)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈzɛçtsɪç",
+   "respell": "drai-unt-zech-tsig",
+   "example": "drei + und + sechzig",
+   "audio": "numbers/dreiundsechzig.mp3"
+  },
+  {
+   "value": 64,
+   "de": "vierundsechzig",
+   "es": "sesenta y cuatro (64)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈzɛçtsɪç",
+   "respell": "fir-unt-zech-tsig",
+   "example": "vier + und + sechzig",
+   "audio": "numbers/vierundsechzig.mp3"
+  },
+  {
+   "value": 65,
+   "de": "fünfundsechzig",
+   "es": "sesenta y cinco (65)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈzɛçtsɪç",
+   "respell": "fünf-unt-zech-tsig",
+   "example": "fünf + und + sechzig",
+   "audio": "numbers/funfundsechzig.mp3"
+  },
+  {
+   "value": 66,
+   "de": "sechsundsechzig",
+   "es": "sesenta y seis (66)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈzɛçtsɪç",
+   "respell": "zeks-unt-zech-tsig",
+   "example": "sechs + und + sechzig",
+   "audio": "numbers/sechsundsechzig.mp3"
+  },
+  {
+   "value": 67,
+   "de": "siebenundsechzig",
+   "es": "sesenta y siete (67)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈzɛçtsɪç",
+   "respell": "si-ben-unt-zech-tsig",
+   "example": "sieben + und + sechzig",
+   "audio": "numbers/siebenundsechzig.mp3"
+  },
+  {
+   "value": 68,
+   "de": "achtundsechzig",
+   "es": "sesenta y ocho (68)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈzɛçtsɪç",
+   "respell": "ajt-unt-zech-tsig",
+   "example": "acht + und + sechzig",
+   "audio": "numbers/achtundsechzig.mp3"
+  },
+  {
+   "value": 69,
+   "de": "neunundsechzig",
+   "es": "sesenta y nueve (69)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈzɛçtsɪç",
+   "respell": "noin-unt-zech-tsig",
+   "example": "neun + und + sechzig",
+   "audio": "numbers/neunundsechzig.mp3"
+  },
+  {
+   "value": 70,
+   "de": "siebzig",
+   "es": "setenta (70)",
+   "category": "cardinal",
+   "ipa": "ˈziːptsɪç",
+   "respell": "sip-tsig",
+   "example": "Das kostet siebzig Euro.",
+   "audio": "numbers/siebzig.mp3"
+  },
+  {
+   "value": 71,
+   "de": "einundsiebzig",
+   "es": "setenta y uno (71)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈziːptsɪç",
+   "respell": "ain-unt-sip-tsig",
+   "example": "ein + und + siebzig",
+   "audio": "numbers/einundsiebzig.mp3"
+  },
+  {
+   "value": 72,
+   "de": "zweiundsiebzig",
+   "es": "setenta y dos (72)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈziːptsɪç",
+   "respell": "tsvai-unt-sip-tsig",
+   "example": "zwei + und + siebzig",
+   "audio": "numbers/zweiundsiebzig.mp3"
+  },
+  {
+   "value": 73,
+   "de": "dreiundsiebzig",
+   "es": "setenta y tres (73)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈziːptsɪç",
+   "respell": "drai-unt-sip-tsig",
+   "example": "drei + und + siebzig",
+   "audio": "numbers/dreiundsiebzig.mp3"
+  },
+  {
+   "value": 74,
+   "de": "vierundsiebzig",
+   "es": "setenta y cuatro (74)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈziːptsɪç",
+   "respell": "fir-unt-sip-tsig",
+   "example": "vier + und + siebzig",
+   "audio": "numbers/vierundsiebzig.mp3"
+  },
+  {
+   "value": 75,
+   "de": "fünfundsiebzig",
+   "es": "setenta y cinco (75)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈziːptsɪç",
+   "respell": "fünf-unt-sip-tsig",
+   "example": "fünf + und + siebzig",
+   "audio": "numbers/funfundsiebzig.mp3"
+  },
+  {
+   "value": 76,
+   "de": "sechsundsiebzig",
+   "es": "setenta y seis (76)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈziːptsɪç",
+   "respell": "zeks-unt-sip-tsig",
+   "example": "sechs + und + siebzig",
+   "audio": "numbers/sechsundsiebzig.mp3"
+  },
+  {
+   "value": 77,
+   "de": "siebenundsiebzig",
+   "es": "setenta y siete (77)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈziːptsɪç",
+   "respell": "si-ben-unt-sip-tsig",
+   "example": "sieben + und + siebzig",
+   "audio": "numbers/siebenundsiebzig.mp3"
+  },
+  {
+   "value": 78,
+   "de": "achtundsiebzig",
+   "es": "setenta y ocho (78)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈziːptsɪç",
+   "respell": "ajt-unt-sip-tsig",
+   "example": "acht + und + siebzig",
+   "audio": "numbers/achtundsiebzig.mp3"
+  },
+  {
+   "value": 79,
+   "de": "neunundsiebzig",
+   "es": "setenta y nueve (79)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈziːptsɪç",
+   "respell": "noin-unt-sip-tsig",
+   "example": "neun + und + siebzig",
+   "audio": "numbers/neunundsiebzig.mp3"
+  },
+  {
+   "value": 80,
+   "de": "achtzig",
+   "es": "ochenta (80)",
+   "category": "cardinal",
+   "ipa": "ˈaxtsɪç",
+   "respell": "ajt-tsig",
+   "example": "Das kostet achtzig Euro.",
+   "audio": "numbers/achtzig.mp3"
+  },
+  {
+   "value": 81,
+   "de": "einundachtzig",
+   "es": "ochenta y uno (81)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈaxtsɪç",
+   "respell": "ain-unt-ajt-tsig",
+   "example": "ein + und + achtzig",
+   "audio": "numbers/einundachtzig.mp3"
+  },
+  {
+   "value": 82,
+   "de": "zweiundachtzig",
+   "es": "ochenta y dos (82)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈaxtsɪç",
+   "respell": "tsvai-unt-ajt-tsig",
+   "example": "zwei + und + achtzig",
+   "audio": "numbers/zweiundachtzig.mp3"
+  },
+  {
+   "value": 83,
+   "de": "dreiundachtzig",
+   "es": "ochenta y tres (83)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈaxtsɪç",
+   "respell": "drai-unt-ajt-tsig",
+   "example": "drei + und + achtzig",
+   "audio": "numbers/dreiundachtzig.mp3"
+  },
+  {
+   "value": 84,
+   "de": "vierundachtzig",
+   "es": "ochenta y cuatro (84)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈaxtsɪç",
+   "respell": "fir-unt-ajt-tsig",
+   "example": "vier + und + achtzig",
+   "audio": "numbers/vierundachtzig.mp3"
+  },
+  {
+   "value": 85,
+   "de": "fünfundachtzig",
+   "es": "ochenta y cinco (85)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈaxtsɪç",
+   "respell": "fünf-unt-ajt-tsig",
+   "example": "fünf + und + achtzig",
+   "audio": "numbers/funfundachtzig.mp3"
+  },
+  {
+   "value": 86,
+   "de": "sechsundachtzig",
+   "es": "ochenta y seis (86)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈaxtsɪç",
+   "respell": "zeks-unt-ajt-tsig",
+   "example": "sechs + und + achtzig",
+   "audio": "numbers/sechsundachtzig.mp3"
+  },
+  {
+   "value": 87,
+   "de": "siebenundachtzig",
+   "es": "ochenta y siete (87)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈaxtsɪç",
+   "respell": "si-ben-unt-ajt-tsig",
+   "example": "sieben + und + achtzig",
+   "audio": "numbers/siebenundachtzig.mp3"
+  },
+  {
+   "value": 88,
+   "de": "achtundachtzig",
+   "es": "ochenta y ocho (88)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈaxtsɪç",
+   "respell": "ajt-unt-ajt-tsig",
+   "example": "acht + und + achtzig",
+   "audio": "numbers/achtundachtzig.mp3"
+  },
+  {
+   "value": 89,
+   "de": "neunundachtzig",
+   "es": "ochenta y nueve (89)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈaxtsɪç",
+   "respell": "noin-unt-ajt-tsig",
+   "example": "neun + und + achtzig",
+   "audio": "numbers/neunundachtzig.mp3"
+  },
+  {
+   "value": 90,
+   "de": "neunzig",
+   "es": "noventa (90)",
+   "category": "cardinal",
+   "ipa": "ˈnɔɪ̯ntsɪç",
+   "respell": "noin-tsig",
+   "example": "Das kostet neunzig Euro.",
+   "audio": "numbers/neunzig.mp3"
+  },
+  {
+   "value": 91,
+   "de": "einundneunzig",
+   "es": "noventa y uno (91)",
+   "category": "cardinal",
+   "ipa": "aɪ̯nʊntˈnɔɪ̯ntsɪç",
+   "respell": "ain-unt-noin-tsig",
+   "example": "ein + und + neunzig",
+   "audio": "numbers/einundneunzig.mp3"
+  },
+  {
+   "value": 92,
+   "de": "zweiundneunzig",
+   "es": "noventa y dos (92)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ʊntˈnɔɪ̯ntsɪç",
+   "respell": "tsvai-unt-noin-tsig",
+   "example": "zwei + und + neunzig",
+   "audio": "numbers/zweiundneunzig.mp3"
+  },
+  {
+   "value": 93,
+   "de": "dreiundneunzig",
+   "es": "noventa y tres (93)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ʊntˈnɔɪ̯ntsɪç",
+   "respell": "drai-unt-noin-tsig",
+   "example": "drei + und + neunzig",
+   "audio": "numbers/dreiundneunzig.mp3"
+  },
+  {
+   "value": 94,
+   "de": "vierundneunzig",
+   "es": "noventa y cuatro (94)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ʊntˈnɔɪ̯ntsɪç",
+   "respell": "fir-unt-noin-tsig",
+   "example": "vier + und + neunzig",
+   "audio": "numbers/vierundneunzig.mp3"
+  },
+  {
+   "value": 95,
+   "de": "fünfundneunzig",
+   "es": "noventa y cinco (95)",
+   "category": "cardinal",
+   "ipa": "fʏnfʊntˈnɔɪ̯ntsɪç",
+   "respell": "fünf-unt-noin-tsig",
+   "example": "fünf + und + neunzig",
+   "audio": "numbers/funfundneunzig.mp3"
+  },
+  {
+   "value": 96,
+   "de": "sechsundneunzig",
+   "es": "noventa y seis (96)",
+   "category": "cardinal",
+   "ipa": "zɛksʊntˈnɔɪ̯ntsɪç",
+   "respell": "zeks-unt-noin-tsig",
+   "example": "sechs + und + neunzig",
+   "audio": "numbers/sechsundneunzig.mp3"
+  },
+  {
+   "value": 97,
+   "de": "siebenundneunzig",
+   "es": "noventa y siete (97)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ʊntˈnɔɪ̯ntsɪç",
+   "respell": "si-ben-unt-noin-tsig",
+   "example": "sieben + und + neunzig",
+   "audio": "numbers/siebenundneunzig.mp3"
+  },
+  {
+   "value": 98,
+   "de": "achtundneunzig",
+   "es": "noventa y ocho (98)",
+   "category": "cardinal",
+   "ipa": "axtʊntˈnɔɪ̯ntsɪç",
+   "respell": "ajt-unt-noin-tsig",
+   "example": "acht + und + neunzig",
+   "audio": "numbers/achtundneunzig.mp3"
+  },
+  {
+   "value": 99,
+   "de": "neunundneunzig",
+   "es": "noventa y nueve (99)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nʊntˈnɔɪ̯ntsɪç",
+   "respell": "noin-unt-noin-tsig",
+   "example": "neun + und + neunzig",
+   "audio": "numbers/neunundneunzig.mp3"
+  },
+  {
+   "value": 100,
+   "de": "hundert",
+   "es": "cien (100)",
+   "category": "cardinal",
+   "ipa": "ˈhʊndɐt",
+   "respell": "hun-dert",
+   "example": "Das kostet hundert Euro.",
+   "audio": "numbers/hundert.mp3"
+  },
+  {
+   "value": 200,
+   "de": "zweihundert",
+   "es": "doscientos (200)",
+   "category": "cardinal",
+   "ipa": "tsvaɪ̯ˈhʊndɐt",
+   "respell": "tsvai-hun-dert",
+   "example": "zwei + hundert",
+   "audio": "numbers/zweihundert.mp3"
+  },
+  {
+   "value": 300,
+   "de": "dreihundert",
+   "es": "trescientos (300)",
+   "category": "cardinal",
+   "ipa": "dʁaɪ̯ˈhʊndɐt",
+   "respell": "drai-hun-dert",
+   "example": "drei + hundert",
+   "audio": "numbers/dreihundert.mp3"
+  },
+  {
+   "value": 400,
+   "de": "vierhundert",
+   "es": "cuatrocientos (400)",
+   "category": "cardinal",
+   "ipa": "fiːɐ̯ˈhʊndɐt",
+   "respell": "fir-hun-dert",
+   "example": "vier + hundert",
+   "audio": "numbers/vierhundert.mp3"
+  },
+  {
+   "value": 500,
+   "de": "fünfhundert",
+   "es": "quinientos (500)",
+   "category": "cardinal",
+   "ipa": "fʏnfˈhʊndɐt",
+   "respell": "fünf-hun-dert",
+   "example": "fünf + hundert",
+   "audio": "numbers/funfhundert.mp3"
+  },
+  {
+   "value": 600,
+   "de": "sechshundert",
+   "es": "seiscientos (600)",
+   "category": "cardinal",
+   "ipa": "zɛksˈhʊndɐt",
+   "respell": "zeks-hun-dert",
+   "example": "sechs + hundert",
+   "audio": "numbers/sechshundert.mp3"
+  },
+  {
+   "value": 700,
+   "de": "siebenhundert",
+   "es": "setecientos (700)",
+   "category": "cardinal",
+   "ipa": "ziːbn̩ˈhʊndɐt",
+   "respell": "si-ben-hun-dert",
+   "example": "sieben + hundert",
+   "audio": "numbers/siebenhundert.mp3"
+  },
+  {
+   "value": 800,
+   "de": "achthundert",
+   "es": "ochocientos (800)",
+   "category": "cardinal",
+   "ipa": "axtˈhʊndɐt",
+   "respell": "ajt-hun-dert",
+   "example": "acht + hundert",
+   "audio": "numbers/achthundert.mp3"
+  },
+  {
+   "value": 900,
+   "de": "neunhundert",
+   "es": "novecientos (900)",
+   "category": "cardinal",
+   "ipa": "nɔɪ̯nˈhʊndɐt",
+   "respell": "noin-hun-dert",
+   "example": "neun + hundert",
+   "audio": "numbers/neunhundert.mp3"
+  },
+  {
+   "value": 1000,
+   "de": "tausend",
+   "es": "mil (1000)",
+   "category": "cardinal",
+   "ipa": "ˈtaʊ̯zn̩t",
+   "respell": "tau-sent",
+   "example": "Das kostet tausend Euro.",
+   "audio": "numbers/tausend.mp3"
+  },
+  {
+   "value": 1,
+   "de": "erste",
+   "es": "primero (1.º)",
+   "category": "ordinal",
+   "ipa": "ˈeːɐ̯stə",
+   "respell": "ers-te",
+   "example": "Das ist der erste Platz.",
+   "audio": "numbers/erste.mp3"
+  },
+  {
+   "value": 2,
+   "de": "zweite",
+   "es": "segundo (2.º)",
+   "category": "ordinal",
+   "ipa": "ˈtsvaɪ̯tə",
+   "respell": "tsvai-te",
+   "example": "Das ist der zweite Platz.",
+   "audio": "numbers/zweite.mp3"
+  },
+  {
+   "value": 3,
+   "de": "dritte",
+   "es": "tercero (3.º)",
+   "category": "ordinal",
+   "ipa": "ˈdʁɪtə",
+   "respell": "dri-te",
+   "example": "Das ist der dritte Platz.",
+   "audio": "numbers/dritte.mp3"
+  },
+  {
+   "value": 4,
+   "de": "vierte",
+   "es": "cuarto (4.º)",
+   "category": "ordinal",
+   "ipa": "ˈfiːɐ̯tə",
+   "respell": "fir-te",
+   "example": "Das ist der vierte Platz.",
+   "audio": "numbers/vierte.mp3"
+  },
+  {
+   "value": 5,
+   "de": "fünfte",
+   "es": "quinto (5.º)",
+   "category": "ordinal",
+   "ipa": "ˈfʏnftə",
+   "respell": "fünf-te",
+   "example": "Das ist der fünfte Platz.",
+   "audio": "numbers/funfte.mp3"
+  },
+  {
+   "value": 6,
+   "de": "sechste",
+   "es": "sexto (6.º)",
+   "category": "ordinal",
+   "ipa": "ˈzɛkstə",
+   "respell": "zeks-te",
+   "example": "Das ist der sechste Platz.",
+   "audio": "numbers/sechste.mp3"
+  },
+  {
+   "value": 7,
+   "de": "siebte",
+   "es": "séptimo (7.º)",
+   "category": "ordinal",
+   "ipa": "ˈziːptə",
+   "respell": "sip-te",
+   "example": "Das ist der siebte Platz.",
+   "audio": "numbers/siebte.mp3"
+  },
+  {
+   "value": 8,
+   "de": "achte",
+   "es": "octavo (8.º)",
+   "category": "ordinal",
+   "ipa": "ˈaxtə",
+   "respell": "aj-te",
+   "example": "Das ist der achte Platz.",
+   "audio": "numbers/achte.mp3"
+  },
+  {
+   "value": 9,
+   "de": "neunte",
+   "es": "noveno (9.º)",
+   "category": "ordinal",
+   "ipa": "ˈnɔɪ̯ntə",
+   "respell": "noin-te",
+   "example": "Das ist der neunte Platz.",
+   "audio": "numbers/neunte.mp3"
+  },
+  {
+   "value": 10,
+   "de": "zehnte",
+   "es": "décimo (10.º)",
+   "category": "ordinal",
+   "ipa": "ˈtseːntə",
+   "respell": "tsen-te",
+   "example": "Das ist der zehnte Platz.",
+   "audio": "numbers/zehnte.mp3"
+  },
+  {
+   "value": 11,
+   "de": "elfte",
+   "es": "undécimo (11.º)",
+   "category": "ordinal",
+   "ipa": "ˈɛlftə",
+   "respell": "elf-te",
+   "example": "Das ist der elfte Platz.",
+   "audio": "numbers/elfte.mp3"
+  },
+  {
+   "value": 12,
+   "de": "zwölfte",
+   "es": "duodécimo (12.º)",
+   "category": "ordinal",
+   "ipa": "ˈtsvœlftə",
+   "respell": "tsvölf-te",
+   "example": "Das ist der zwölfte Platz.",
+   "audio": "numbers/zwolfte.mp3"
+  },
+  {
+   "value": 13,
+   "de": "dreizehnte",
+   "es": "decimotercero (13.º)",
+   "category": "ordinal",
+   "ipa": "ˈdʁaɪ̯tseːntə",
+   "respell": "drai-tsen-te",
+   "example": "Das ist der dreizehnte Platz.",
+   "audio": "numbers/dreizehnte.mp3"
+  },
+  {
+   "value": 14,
+   "de": "vierzehnte",
+   "es": "decimocuarto (14.º)",
+   "category": "ordinal",
+   "ipa": "ˈfɪʁtseːntə",
+   "respell": "fir-tsen-te",
+   "example": "Das ist der vierzehnte Platz.",
+   "audio": "numbers/vierzehnte.mp3"
+  },
+  {
+   "value": 15,
+   "de": "fünfzehnte",
+   "es": "decimoquinto (15.º)",
+   "category": "ordinal",
+   "ipa": "ˈfʏnftseːntə",
+   "respell": "fünf-tsen-te",
+   "example": "Das ist der fünfzehnte Platz.",
+   "audio": "numbers/funfzehnte.mp3"
+  },
+  {
+   "value": 16,
+   "de": "sechzehnte",
+   "es": "decimosexto (16.º)",
+   "category": "ordinal",
+   "ipa": "ˈzɛçtseːntə",
+   "respell": "zech-tsen-te",
+   "example": "Das ist der sechzehnte Platz.",
+   "audio": "numbers/sechzehnte.mp3"
+  },
+  {
+   "value": 17,
+   "de": "siebzehnte",
+   "es": "decimoséptimo (17.º)",
+   "category": "ordinal",
+   "ipa": "ˈziːptseːntə",
+   "respell": "sip-tsen-te",
+   "example": "Das ist der siebzehnte Platz.",
+   "audio": "numbers/siebzehnte.mp3"
+  },
+  {
+   "value": 18,
+   "de": "achtzehnte",
+   "es": "decimoctavo (18.º)",
+   "category": "ordinal",
+   "ipa": "ˈaxtseːntə",
+   "respell": "ajt-tsen-te",
+   "example": "Das ist der achtzehnte Platz.",
+   "audio": "numbers/achtzehnte.mp3"
+  },
+  {
+   "value": 19,
+   "de": "neunzehnte",
+   "es": "decimonoveno (19.º)",
+   "category": "ordinal",
+   "ipa": "ˈnɔɪ̯ntseːntə",
+   "respell": "noin-tsen-te",
+   "example": "Das ist der neunzehnte Platz.",
+   "audio": "numbers/neunzehnte.mp3"
+  },
+  {
+   "value": 20,
+   "de": "zwanzigste",
+   "es": "vigésimo (20.º)",
+   "category": "ordinal",
+   "ipa": "ˈtsvantsɪçstə",
+   "respell": "tsvan-tsig-ste",
+   "example": "Das ist der zwanzigste Platz.",
+   "audio": "numbers/zwanzigste.mp3"
+  },
+  {
+   "value": 21,
+   "de": "einundzwanzigste",
+   "es": "vigésimo primero (21.º)",
+   "category": "ordinal",
+   "ipa": "aɪ̯nʊntˈtsvantsɪçstə",
+   "respell": "ain-unt-tsvan-tsig-ste",
+   "example": "Das ist der einundzwanzigste Platz.",
+   "audio": "numbers/einundzwanzigste.mp3"
+  },
+  {
+   "value": 22,
+   "de": "zweiundzwanzigste",
+   "es": "vigésimo segundo (22.º)",
+   "category": "ordinal",
+   "ipa": "tsvaɪ̯ʊntˈtsvantsɪçstə",
+   "respell": "tsvai-unt-tsvan-tsig-ste",
+   "example": "Das ist der zweiundzwanzigste Platz.",
+   "audio": "numbers/zweiundzwanzigste.mp3"
+  },
+  {
+   "value": 23,
+   "de": "dreiundzwanzigste",
+   "es": "vigésimo tercero (23.º)",
+   "category": "ordinal",
+   "ipa": "dʁaɪ̯ʊntˈtsvantsɪçstə",
+   "respell": "drai-unt-tsvan-tsig-ste",
+   "example": "Das ist der dreiundzwanzigste Platz.",
+   "audio": "numbers/dreiundzwanzigste.mp3"
+  },
+  {
+   "value": 24,
+   "de": "vierundzwanzigste",
+   "es": "vigésimo cuarto (24.º)",
+   "category": "ordinal",
+   "ipa": "fiːɐ̯ʊntˈtsvantsɪçstə",
+   "respell": "fir-unt-tsvan-tsig-ste",
+   "example": "Das ist der vierundzwanzigste Platz.",
+   "audio": "numbers/vierundzwanzigste.mp3"
+  },
+  {
+   "value": 25,
+   "de": "fünfundzwanzigste",
+   "es": "vigésimo quinto (25.º)",
+   "category": "ordinal",
+   "ipa": "fʏnfʊntˈtsvantsɪçstə",
+   "respell": "fünf-unt-tsvan-tsig-ste",
+   "example": "Das ist der fünfundzwanzigste Platz.",
+   "audio": "numbers/funfundzwanzigste.mp3"
+  },
+  {
+   "value": 26,
+   "de": "sechsundzwanzigste",
+   "es": "vigésimo sexto (26.º)",
+   "category": "ordinal",
+   "ipa": "zɛksʊntˈtsvantsɪçstə",
+   "respell": "zeks-unt-tsvan-tsig-ste",
+   "example": "Das ist der sechsundzwanzigste Platz.",
+   "audio": "numbers/sechsundzwanzigste.mp3"
+  },
+  {
+   "value": 27,
+   "de": "siebenundzwanzigste",
+   "es": "vigésimo séptimo (27.º)",
+   "category": "ordinal",
+   "ipa": "ziːbn̩ʊntˈtsvantsɪçstə",
+   "respell": "si-ben-unt-tsvan-tsig-ste",
+   "example": "Das ist der siebenundzwanzigste Platz.",
+   "audio": "numbers/siebenundzwanzigste.mp3"
+  },
+  {
+   "value": 28,
+   "de": "achtundzwanzigste",
+   "es": "vigésimo octavo (28.º)",
+   "category": "ordinal",
+   "ipa": "axtʊntˈtsvantsɪçstə",
+   "respell": "ajt-unt-tsvan-tsig-ste",
+   "example": "Das ist der achtundzwanzigste Platz.",
+   "audio": "numbers/achtundzwanzigste.mp3"
+  },
+  {
+   "value": 29,
+   "de": "neunundzwanzigste",
+   "es": "vigésimo noveno (29.º)",
+   "category": "ordinal",
+   "ipa": "nɔɪ̯nʊntˈtsvantsɪçstə",
+   "respell": "noin-unt-tsvan-tsig-ste",
+   "example": "Das ist der neunundzwanzigste Platz.",
+   "audio": "numbers/neunundzwanzigste.mp3"
+  },
+  {
+   "value": 30,
+   "de": "dreißigste",
+   "es": "trigésimo (30.º)",
+   "category": "ordinal",
+   "ipa": "ˈdʁaɪ̯sɪçstə",
+   "respell": "drai-sig-ste",
+   "example": "Das ist der dreißigste Platz.",
+   "audio": "numbers/dreissigste.mp3"
+  },
+  {
+   "value": 0.5,
+   "de": "null Komma fünf",
+   "es": "cero coma cinco (0,5)",
+   "category": "decimal",
+   "ipa": "nʊl ˈkɔma fʏnf",
+   "respell": "nul ko-ma fünf",
+   "example": "Ich trinke null Komma fünf Liter.",
+   "audio": "numbers/null_komma_funf.mp3"
+  },
+  {
+   "value": 1.5,
+   "de": "eins Komma fünf",
+   "es": "uno coma cinco (1,5)",
+   "category": "decimal",
+   "ipa": "aɪ̯ns ˈkɔma fʏnf",
+   "respell": "ains ko-ma fünf",
+   "example": "Das sind eins Komma fünf Kilo.",
+   "audio": "numbers/eins_komma_funf.mp3"
+  },
+  {
+   "value": 2.5,
+   "de": "zwei Komma fünf",
+   "es": "dos coma cinco (2,5)",
+   "category": "decimal",
+   "ipa": "tsvaɪ̯ ˈkɔma fʏnf",
+   "respell": "tsvai ko-ma fünf",
+   "example": "Der Salat wiegt zwei Komma fünf Kilo.",
+   "audio": "numbers/zwei_komma_funf.mp3"
+  },
+  {
+   "value": 3.75,
+   "de": "drei Komma sieben fünf",
+   "es": "tres coma setenta y cinco (3,75)",
+   "category": "decimal",
+   "ipa": "dʁaɪ̯ ˈkɔma ˈziːbn̩ fʏnf",
+   "respell": "drai ko-ma si-ben fünf",
+   "example": "Das kostet drei Komma sieben fünf Euro.",
+   "audio": "numbers/drei_komma_sieben_funf.mp3"
+  }
+ ],
+ "units": []
+}
