@@ -66,15 +66,34 @@ create index if not exists words_category_idx       on public.words (category) w
 alter table public.numbers enable row level security;
 alter table public.units   enable row level security;
 
-create policy "numbers: ver catálogo y propios" on public.numbers for select using (owner is null or owner = auth.uid());
-create policy "numbers: crear propias"          on public.numbers for insert with check (owner = auth.uid());
-create policy "numbers: editar propias"         on public.numbers for update using (owner = auth.uid());
-create policy "numbers: borrar propias"         on public.numbers for delete using (owner = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='numbers' and policyname='numbers: ver catálogo y propios') then
+    create policy "numbers: ver catálogo y propios" on public.numbers for select using (owner is null or owner = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='numbers' and policyname='numbers: crear propias') then
+    create policy "numbers: crear propias" on public.numbers for insert with check (owner = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='numbers' and policyname='numbers: editar propias') then
+    create policy "numbers: editar propias" on public.numbers for update using (owner = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='numbers' and policyname='numbers: borrar propias') then
+    create policy "numbers: borrar propias" on public.numbers for delete using (owner = auth.uid());
+  end if;
 
-create policy "units: ver catálogo"     on public.units for select using (true);
-create policy "units: crear propios"   on public.units for insert with check (false);
-create policy "units: editar propios"  on public.units for update using (false);
-create policy "units: borrar propios"  on public.units for delete using (false);
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='units' and policyname='units: ver catálogo') then
+    create policy "units: ver catálogo" on public.units for select using (true);
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='units' and policyname='units: crear propios') then
+    create policy "units: crear propias" on public.units for insert with check (false);
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='units' and policyname='units: editar propias') then
+    create policy "units: editar propias" on public.units for update using (false);
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='units' and policyname='units: borrar propios') then
+    create policy "units: borrar propios" on public.units for delete using (false);
+  end if;
+end $$;
 
 -- ---------- 5b) SRS de números (una fila por número y por pista) ----------
 -- pista 'listen'  : oyes el número → escribes la cifra
@@ -106,9 +125,18 @@ create index if not exists number_review_log_user_idx on public.number_review_lo
 alter table public.number_cards enable row level security;
 alter table public.number_review_log enable row level security;
 
-create policy "number_cards: todo lo propio" on public.number_cards for all using (user_id = auth.uid()) with check (user_id = auth.uid());
-create policy "number_log: ver propio"      on public.number_review_log for select using (user_id = auth.uid());
-create policy "number_log: insertar propio" on public.number_review_log for insert with check (user_id = auth.uid());
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='number_cards' and policyname='number_cards: todo lo propio') then
+    create policy "number_cards: todo lo propio" on public.number_cards for all using (user_id = auth.uid()) with check (user_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='number_review_log' and policyname='number_log: ver propio') then
+    create policy "number_log: ver propio" on public.number_review_log for select using (user_id = auth.uid());
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='public' and tablename='number_review_log' and policyname='number_log: insertar propio') then
+    create policy "number_log: insertar propio" on public.number_review_log for insert with check (user_id = auth.uid());
+  end if;
+end $$;
 
 -- agrega N números aleatorios del catálogo a la cola del usuario (ambas pistas)
 create or replace function public.add_random_numbers(p_n int default 10, p_category text default null, p_track text default 'listen')
@@ -130,14 +158,26 @@ begin
   return v_count;
 end $$;
 
--- ---------- 6) Storage: bucket público de audio ----------insert into storage.buckets (id, name, public)
+-- ---------- 6) Storage: bucket público de audio ----------
+insert into storage.buckets (id, name, public)
 values ('audio', 'audio', true)
 on conflict (id) do update set public = excluded.public;
 
-create policy "audio: leer" on storage.objects for select using (bucket_id = 'audio');
-create policy "audio: escribir" on storage.objects for insert with check (bucket_id = 'audio');
-create policy "audio: actualizar" on storage.objects for update using (bucket_id = 'audio');
-create policy "audio: borrar" on storage.objects for delete using (bucket_id = 'audio');
+do $$
+begin
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='audio: leer') then
+    create policy "audio: leer" on storage.objects for select using (bucket_id = 'audio');
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='audio: escribir') then
+    create policy "audio: escribir" on storage.objects for insert with check (bucket_id = 'audio');
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='audio: actualizar') then
+    create policy "audio: actualizar" on storage.objects for update using (bucket_id = 'audio');
+  end if;
+  if not exists (select 1 from pg_policies where schemaname='storage' and tablename='objects' and policyname='audio: borrar') then
+    create policy "audio: borrar" on storage.objects for delete using (bucket_id = 'audio');
+  end if;
+end $$;
 
 -- La URL pública del audio se arma en el cliente/script:
 --   {SUPABASE_URL}/storage/v1/object/public/audio/{ruta}
