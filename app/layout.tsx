@@ -52,7 +52,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <main className="mx-auto max-w-xl p-4 sm:p-6 md:max-w-3xl md:p-8">{children}</main>
         {user && (
           <footer className="mx-auto mt-auto w-full max-w-xl p-4 pb-28 text-center text-xs opacity-50 md:max-w-3xl md:pb-4">
-            Diseñado por <a href="https://nilspineda.com/es/" className="underline">nilspineda</a>
+            Elaborado por Nils Pineda &amp; Angie Vera
           </footer>
         )}
         {user && (
