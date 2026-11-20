@@ -251,7 +251,7 @@ export default function StudySession({ track, level, topic, saved }: { track: 'm
   }
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex gap-2">
         <Link href={qs('meaning')} className={tab('meaning', track === 'meaning')}>📖 Significado</Link>
         <Link href={qs('pron')} className={tab('pron', track === 'pron')}>🔊 Pronunciación</Link>

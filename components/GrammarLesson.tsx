@@ -92,7 +92,7 @@ export default function GrammarLesson({ rule, exercises }: { rule: Rule; exercis
   const examples = Array.isArray(rule.examples) ? rule.examples : []
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>{rule.title}</b>
         <Link href="/grammar" className="text-sm opacity-70 underline">← Lecciones</Link>

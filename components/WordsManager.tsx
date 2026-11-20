@@ -80,7 +80,7 @@ export default function WordsManager({ initialTopic, initialLevel }: { initialTo
   const box = 'rounded-xl border border-stone-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900'
 
   return (
-    <div className="space-y-5">
+    <div className="page-stack">
       <div className={box + ' space-y-3'}>
         <div className="grid grid-cols-2 gap-2">
           <select className={inp} value={level} onChange={(e) => setLevel(e.target.value)}>

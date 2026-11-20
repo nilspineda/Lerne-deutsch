@@ -121,7 +121,7 @@ export default function StatsPanel() {
   const mastery = cards && cards.total > 0 ? Math.round((cards.mastered / cards.total) * 100) : null
 
   return (
-    <div className="space-y-5">
+    <div className="page-stack">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div className={box}><div className="text-2xl font-bold">{cards?.total ?? 0}</div><div className="text-xs opacity-70">Palabras estudiando</div></div>
         <div className={box}><div className="text-2xl font-bold text-green-400">{mastery ?? 0}%</div><div className="text-xs opacity-70">{cards?.mastered ?? 0} dominadas (3+ días)</div></div>

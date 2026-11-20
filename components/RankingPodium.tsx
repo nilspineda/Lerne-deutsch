@@ -27,7 +27,7 @@ export default function RankingPodium({ entries, loadError }: { entries: RankEnt
   const canvas = useRef<HTMLCanvasElement>(null)
   const sortedScores = entries
     .filter((entry) => entry.percentage !== null)
-    .sort((a, b) => Number(b.percentage) - Number(a.percentage) || new Date(b.finished_at ?? 0).getTime() - new Date(a.finished_at ?? 0).getTime())
+    .sort((a, b) => Number(b.percentage) - Number(a.percentage) || new Date(a.finished_at ?? 0).getTime() - new Date(b.finished_at ?? 0).getTime())
   const ranked = places.map((medal) => ({ ...medal, entry: sortedScores[medal.place - 1] ?? null }))
   const participants = [...entries].sort((a, b) => a.display_name.localeCompare(b.display_name, 'es'))
 
@@ -142,10 +142,10 @@ export default function RankingPodium({ entries, loadError }: { entries: RankEnt
           })}</div> : <p className="mt-4 rounded-2xl border border-dashed border-white/15 p-5 text-center text-sm text-white/50">Todavía no hay usuarios registrados.</p>}
         </section>
 
-        <div className="mx-auto mt-10 max-w-4xl text-center"><p className="text-xs font-bold uppercase tracking-[.28em] text-violet-200">Mejores resultados</p><h2 className="mt-1 text-2xl font-black sm:text-3xl">El podio del final</h2></div>
+        <div className="mx-auto mt-8 max-w-4xl text-center"><p className="text-xs font-bold uppercase tracking-[.28em] text-violet-200">Mejores resultados</p><h2 className="mt-1 text-2xl font-black sm:text-3xl">El podio del final</h2></div>
         {sortedScores.length === 0 && <div className="mx-auto mt-5 max-w-lg rounded-3xl border border-white/10 bg-white/5 p-5 text-center text-sm text-white/60">Aún no hay resultados. El podio se llenará cuando presenten el final.</div>}
         {sortedScores.length > 0 && (
-          <section aria-label="Podio de los tres mejores resultados" className="mx-auto mt-9 grid max-w-4xl grid-cols-3 items-end gap-2 sm:gap-5">
+          <section aria-label="Podio de los tres mejores resultados" className="mx-auto mt-8 grid max-w-4xl grid-cols-3 items-end gap-2 sm:gap-5">
             {ranked.map(({ place, label, color, glow, height, icon: Icon, entry }) => (
               <article key={place} className={`podium-place relative flex min-w-0 flex-col items-center justify-end overflow-hidden rounded-t-[1.7rem] rounded-b-2xl border border-white/15 bg-gradient-to-b from-white/[.12] to-white/[.035] px-2 pb-4 pt-4 text-center backdrop-blur-xl sm:px-5 sm:pb-6 ${height}`} style={{ boxShadow: `0 22px 65px -32px ${glow}` }}>
                 <div className="ranking-shine pointer-events-none absolute -left-1/2 top-0 h-full w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -159,7 +159,7 @@ export default function RankingPodium({ entries, loadError }: { entries: RankEnt
           </section>
         )}
 
-        <div className="mx-auto mt-7 flex max-w-4xl items-center justify-center gap-2 text-xs text-white/45"><Award className="size-4 text-amber-200/70" />Clasificación por porcentaje · desempate por intento más reciente</div>
+        <div className="mx-auto mt-6 flex max-w-4xl items-center justify-center gap-2 text-center text-xs text-white/45"><Award className="size-4 shrink-0 text-amber-200/70" />Clasificación por porcentaje · desempate por quien obtuvo esa nota primero</div>
       </div>
     </main>
   )

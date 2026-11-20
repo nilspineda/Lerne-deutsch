@@ -158,7 +158,7 @@ export default function NumbersSession({ track, initialCategory = '' }: { track:
   if (loading) return <p className="py-10 text-center text-sm opacity-60">Cargando números…</p>
   if (!card) {
     return (
-      <div className="space-y-4 text-center">
+      <div className="page-stack text-center">
         <p className="text-sm opacity-70">No hay números en la cola. Añade algunos al catálogo y vuelve a entrar.</p>
         <Link href="/numbers" className="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">↻ Recargar</Link>
       </div>
@@ -171,7 +171,7 @@ export default function NumbersSession({ track, initialCategory = '' }: { track:
     : n.es
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex items-center justify-between text-xs opacity-60">
         <span>🔢 {done} repasados</span>
         <span>pista: {track === 'listen' ? 'oír → cifra' : 'cifra → palabra'}</span>

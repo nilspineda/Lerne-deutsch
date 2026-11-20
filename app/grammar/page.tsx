@@ -39,7 +39,7 @@ export default async function Grammar() {
   const box = 'rounded-xl border border-stone-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900'
 
   return (
-    <div className="space-y-5">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>📚 Gramática</b>
         <Link href="/" className="text-sm opacity-70 underline">Inicio</Link>

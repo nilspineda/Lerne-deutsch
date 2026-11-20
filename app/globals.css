@@ -79,3 +79,10 @@
     @apply border-border outline-ring/50;
   }
 }
+
+
+@layer components {
+  .page-stack {
+    @apply space-y-5 sm:space-y-6;
+  }
+}

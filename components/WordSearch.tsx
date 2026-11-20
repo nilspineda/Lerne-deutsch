@@ -41,7 +41,7 @@ export default function WordSearch() {
   }, [hits, term])
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>🔍 Buscador</b>
         <Link href="/" className="text-sm opacity-70 underline">Inicio</Link>

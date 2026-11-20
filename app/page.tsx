@@ -31,7 +31,7 @@ export default async function Home() {
     // catálogo global + palabras propias (suman al total del tema y permiten "agregar más")
     sb.from('words').select('topic, level, owner').or(`owner.is.null,owner.eq.${user?.id}`),
     sb.from('review_log').select('reviewed_at').gte('reviewed_at', new Date(Date.now() - 90 * 864e5).toISOString()).limit(2000),
-    sb.from('quiz_attempts').select('score, total_questions, percentage, finished_at').eq('quiz_key', 'final-a1.1').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').order('percentage', { ascending: false }).order('finished_at', { ascending: false }).limit(1),
+    sb.from('quiz_attempts').select('score, total_questions, percentage, finished_at').eq('quiz_key', 'final-a1.1').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').eq('user_id', user?.id ?? '').order('percentage', { ascending: false }).order('finished_at', { ascending: false }).limit(1),
   ])
   const cards = (c ?? []) as unknown as Row[]
   const catalog = (k ?? []) as Cat[]
@@ -65,7 +65,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="space-y-5">
+    <div className="page-stack">
       <InstallPrompt />
       <AddRandom n={15} />
       <Link href="/quiz-a1.1" className="group relative block overflow-hidden rounded-3xl border border-violet-300/60 bg-gradient-to-br from-indigo-950 via-violet-950 to-rose-950 p-6 text-white shadow-xl shadow-violet-950/15 transition duration-300 hover:-translate-y-1 hover:shadow-2xl sm:p-8">
@@ -78,6 +78,12 @@ export default async function Home() {
           <span className="rounded-xl bg-amber-300 px-4 py-2 text-sm font-extrabold text-violet-950 transition group-hover:scale-105">{attempts?.length ? 'Repetir final →' : 'Presentar final →'}</span>
         </span>
       </Link>
+      {user?.email?.trim().toLowerCase() === 'nilspineda@gmail.com' && (
+        <Link href="/ranking" className="group flex items-center justify-between gap-4 rounded-2xl border border-amber-300/50 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg dark:from-amber-950/30 dark:via-neutral-900 dark:to-orange-950/30">
+          <span><span className="block text-xs font-bold uppercase tracking-[.2em] text-amber-700 dark:text-amber-300">Vista de administrador</span><span className="mt-1 block text-xl font-black">Podio FINAL A1.1</span><span className="mt-1 block text-sm opacity-65">Ranking de oro, plata y bronce</span></span>
+          <span className="text-3xl transition group-hover:scale-110">🏆</span>
+        </Link>
+      )}
       <div className="grid grid-cols-2 gap-3">
         <Link href="/study?track=meaning" className={box}>
           <div className="text-3xl font-bold">{due('meaning')}</div>

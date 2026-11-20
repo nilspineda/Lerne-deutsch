@@ -5,7 +5,7 @@ export default async function Listen({ searchParams }: { searchParams: Promise<{
   const p = await searchParams
   const level = p.level === 'A1.2' ? 'A1.2' : 'A1.1'
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>🎧 Escucha y practica</b>
         <div className="text-sm opacity-70">

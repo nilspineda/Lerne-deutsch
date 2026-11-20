@@ -70,7 +70,7 @@ export default function ListenSession({ level }: { level: 'A1.1' | 'A1.2' }) {
     `flex-1 rounded-lg border p-2 text-center text-sm ${on ? 'bg-stone-900 text-white dark:bg-stone-100 dark:text-black' : 'border-stone-300 dark:border-neutral-700 text-stone-300 dark:text-neutral-300'}`
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex gap-2">
         <button onClick={() => setMode('comprender')} className={tab(mode === 'comprender')}>🧠 Comprender</button>
         <button onClick={() => setMode('ordenar')} className={tab(mode === 'ordenar')}>🔤 Ordenar</button>

@@ -100,7 +100,7 @@ as
     finished_at
   from public.quiz_attempts
   where quiz_key = 'final-a1.1'
-  order by user_id, percentage desc, finished_at desc;
+  order by user_id, percentage desc, finished_at asc;
 
 revoke all on public.quiz_a11_leaderboard from anon;
 grant select on public.quiz_a11_leaderboard to authenticated;
@@ -122,7 +122,7 @@ as
     from public.quiz_attempts as attempt
     where attempt.user_id = directory.user_id
       and attempt.quiz_key = 'final-a1.1'
-    order by attempt.percentage desc, attempt.finished_at desc
+    order by attempt.percentage desc, attempt.finished_at asc
     limit 1
   ) as best on true;
 

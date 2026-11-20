@@ -82,7 +82,7 @@ export default function ArticlesQuiz({ level }: { level: string }) {
   )
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       {done ? (
         <>
           <div className="rounded-2xl border border-stone-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 text-center">

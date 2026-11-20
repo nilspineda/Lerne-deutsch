@@ -24,7 +24,7 @@ export default async function NumbersPage({
 
   if (!user) {
     return (
-      <div className="space-y-4 text-center">
+      <div className="page-stack text-center">
         <p className="text-sm opacity-70">Inicia sesión para practicar números.</p>
         <Link href="/login" className="inline-block rounded-lg border border-stone-300 px-4 py-2 text-sm dark:border-neutral-700">Entrar</Link>
       </div>
@@ -32,7 +32,7 @@ export default async function NumbersPage({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>🔢 Números</b>
         <Link href="/" className="text-sm opacity-70 underline">Inicio</Link>

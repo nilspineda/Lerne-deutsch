@@ -171,7 +171,7 @@ export default function QuizA11() {
   const fields = 'w-full rounded-xl border border-stone-300 bg-white p-3 text-sm dark:border-neutral-700 dark:bg-neutral-950'
 
   return (
-    <div className="space-y-5">
+    <div className="page-stack">
       <div className="flex items-center justify-between gap-3"><Link href="/" className="inline-flex items-center gap-1 text-sm opacity-70 hover:opacity-100"><ArrowLeft className="size-4" /> Inicio</Link><span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-800 dark:bg-violet-950 dark:text-violet-200">FINAL A.1.1 ALEMAN</span></div>
       {completed ? (
         <section className="relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-indigo-950 via-violet-950 to-rose-950 p-8 text-center text-white shadow-2xl sm:p-12">

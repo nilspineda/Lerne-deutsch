@@ -7,7 +7,7 @@ const LEVELS = ['', 'A1', 'A2']
 export default function Quiz() {
   const [level, setLevel] = useState('')
   return (
-    <div className="space-y-3">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>🎩 Quiz · der / die / das</b>
         <a href="/stats" className="text-sm opacity-70 underline">Estadísticas</a>

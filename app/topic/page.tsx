@@ -22,7 +22,7 @@ export default async function Topic({
   const masterLabel = topicLabel(topic) || 'Tema'
 
   return (
-    <div className="space-y-4">
+    <div className="page-stack">
       <div className="flex items-center justify-between">
         <b>{masterLabel} {level}</b>
         <Link href="/" className="text-sm opacity-70 underline">Inicio</Link>
