@@ -1,7 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase/client'
-import { LogOut } from 'lucide-react'
+import Link from 'next/link'
+import { LogOut, Trophy } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 
@@ -22,6 +23,11 @@ export default function UserMenu({ name, email }: { name: string; email?: string
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
         <DropdownMenuLabel className="truncate">{email ?? name}</DropdownMenuLabel>
+        {email?.trim().toLowerCase() === 'nilspineda@gmail.com' && (
+          <DropdownMenuItem asChild>
+            <Link href="/ranking"><Trophy className="size-4 text-amber-500" /> Ranking FINAL A1.1</Link>
+          </DropdownMenuItem>
+        )}
         <DropdownMenuSeparator />
         <DropdownMenuItem variant="destructive" onClick={logout}>
           <LogOut /> Cerrar sesión

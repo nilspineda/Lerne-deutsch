@@ -12,5 +12,5 @@ export default async function RankingPage() {
     .select('user_id, display_name, percentage, score, total_questions, finished_at, registered_at')
     .order('display_name', { ascending: true })
 
-  return <RankingPodium entries={error ? [] : (data ?? []) as RankEntry[]} />
+  return <RankingPodium entries={error ? [] : (data ?? []) as RankEntry[]} loadError={error ? `Supabase respondió: ${error.message}` : undefined} />
 }

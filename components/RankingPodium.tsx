@@ -22,7 +22,7 @@ const places = [
   { place: 3, label: 'BRONCE', color: '#fb923c', glow: 'rgba(251,146,60,.3)', height: 'h-44 sm:h-52', icon: Award },
 ]
 
-export default function RankingPodium({ entries }: { entries: RankEntry[] }) {
+export default function RankingPodium({ entries, loadError }: { entries: RankEntry[]; loadError?: string }) {
   const root = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
   const sortedScores = entries
@@ -136,7 +136,7 @@ export default function RankingPodium({ entries }: { entries: RankEntry[] }) {
 
         <section aria-label="Usuarios registrados" className="mx-auto mt-8 max-w-4xl rounded-3xl border border-white/10 bg-white/[.055] p-4 backdrop-blur sm:p-6">
           <div className="flex flex-wrap items-end justify-between gap-3"><div><h2 className="text-xl font-black">Usuarios registrados</h2><p className="mt-1 text-sm text-white/55">Estado de participación en el final A1.1</p></div><span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-white/70">{participants.length} usuario{participants.length === 1 ? '' : 's'}</span></div>
-          {participants.length ? <div className="mt-4 divide-y divide-white/10">{participants.map((entry) => {
+          {loadError ? <p role="alert" className="mt-4 rounded-2xl border border-amber-200/20 bg-amber-200/5 p-4 text-sm text-amber-100">{loadError}</p> : participants.length ? <div className="mt-4 divide-y divide-white/10">{participants.map((entry) => {
             const hasScore = entry.percentage !== null
             return <div key={entry.user_id} className="flex items-center justify-between gap-3 py-3 first:pt-1 last:pb-1"><div className="min-w-0"><p className="truncate text-sm font-semibold">{entry.display_name}</p><p className="mt-0.5 text-xs text-white/40">Registrado {new Date(entry.registered_at).toLocaleDateString('es-CO', { dateStyle: 'medium' })}</p></div><div className="shrink-0 text-right">{hasScore ? <><span className="block text-sm font-black text-emerald-300">{Number(entry.percentage)}% · {entry.score}/{entry.total_questions}</span><span className="text-[10px] font-bold uppercase tracking-wider text-emerald-200/60">Presentado</span></> : <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white/55">Pendiente</span>}</div></div>
           })}</div> : <p className="mt-4 rounded-2xl border border-dashed border-white/15 p-5 text-center text-sm text-white/50">Todavía no hay usuarios registrados.</p>}
