@@ -26,11 +26,12 @@ function streakOf(days: string[]): number {
 export default async function Home() {
   const sb = await createClient()
   const { data: { user } } = await sb.auth.getUser()
-  const [{ data: c }, { data: k }, { data: r }] = await Promise.all([
+  const [{ data: c }, { data: k }, { data: r }, { data: attempts }] = await Promise.all([
     sb.from('user_cards').select('track, due, interval_days, words(topic, level)'),
     // catálogo global + palabras propias (suman al total del tema y permiten "agregar más")
     sb.from('words').select('topic, level, owner').or(`owner.is.null,owner.eq.${user?.id}`),
     sb.from('review_log').select('reviewed_at').gte('reviewed_at', new Date(Date.now() - 90 * 864e5).toISOString()).limit(2000),
+    sb.from('quiz_attempts').select('score, total_questions, percentage, finished_at').eq('quiz_key', 'final-a1.1').order('percentage', { ascending: false }).order('finished_at', { ascending: false }).limit(1),
   ])
   const cards = (c ?? []) as unknown as Row[]
   const catalog = (k ?? []) as Cat[]
@@ -67,6 +68,16 @@ export default async function Home() {
     <div className="space-y-5">
       <InstallPrompt />
       <AddRandom n={15} />
+      <Link href="/quiz-a1.1" className="group relative block overflow-hidden rounded-3xl border border-violet-300/60 bg-gradient-to-br from-indigo-950 via-violet-950 to-rose-950 p-6 text-white shadow-xl shadow-violet-950/15 transition duration-300 hover:-translate-y-1 hover:shadow-2xl sm:p-8">
+        <span className="absolute -right-6 -top-8 text-8xl opacity-15 transition-transform group-hover:rotate-12 group-hover:scale-110">🏆</span>
+        <span className="relative text-xs font-bold uppercase tracking-[.25em] text-amber-200">Sección especial · Alemán A1.1</span>
+        <span className="relative mt-2 block text-2xl font-black sm:text-3xl">FINAL A.1.1 ALEMAN</span>
+        <span className="relative mt-2 block text-sm text-violet-100/80">Presentaciones, familia, gramática, compras, casa y números.</span>
+        <span className="relative mt-5 flex flex-wrap items-end justify-between gap-3">
+          <span className="rounded-xl bg-white/10 px-4 py-2 text-sm font-bold backdrop-blur">{attempts?.length ? `Tu mejor nota: ${Number(attempts[0].percentage)}% · ${attempts[0].score}/${attempts[0].total_questions}` : 'Aún no lo has presentado · Empieza aquí'}</span>
+          <span className="rounded-xl bg-amber-300 px-4 py-2 text-sm font-extrabold text-violet-950 transition group-hover:scale-105">{attempts?.length ? 'Repetir final →' : 'Presentar final →'}</span>
+        </span>
+      </Link>
       <div className="grid grid-cols-2 gap-3">
         <Link href="/study?track=meaning" className={box}>
           <div className="text-3xl font-bold">{due('meaning')}</div>

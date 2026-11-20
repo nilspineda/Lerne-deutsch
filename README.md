@@ -9,6 +9,8 @@ Flashcards de alemán con repetición espaciada. Next.js 15 + Supabase (Auth + P
 4. `cp .env.local.example .env.local` y rellena URL + anon/publishable key.
 5. `npm install && npm run dev`
 
+Documentación: `docs/CONTEXTO-APP.md` (contexto general de la app) · `docs/CONTENT-MANIFEST.md` (formato de contenido).
+
 ## Cómo está armado
 - `words`: catálogo global (`owner = null`) + palabras propias del usuario.
 - `user_cards`: una fila por palabra y por pista (`meaning` y `pron`), cada una con su propio calendario SM-2.

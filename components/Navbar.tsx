@@ -19,10 +19,12 @@ export default function Navbar({ variant }: { variant: 'header' | 'bottom' }) {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href)
   if (variant === 'bottom') {
+    // en móvil el buscador vive en el header (icono 🔍), no en la barra inferior
+    const bottomItems = items.filter((i) => i.href !== '/search')
     return (
       <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-stone-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden dark:border-neutral-800 dark:bg-neutral-950/95">
         <div className="mx-auto flex max-w-md justify-between gap-0.5 p-1.5">
-          {items.map(({ href, label, icon: Icon }) => {
+          {bottomItems.map(({ href, label, icon: Icon }) => {
             const active = isActive(href)
             return (
               <Link key={href} href={href} aria-current={active ? 'page' : undefined}
